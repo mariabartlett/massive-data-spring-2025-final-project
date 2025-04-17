@@ -1,0 +1,161 @@
+---
+title: "Annual institutional sports equity report"
+format: pdf
+theme: litera
+toc: FALSE
+fontsize: 12pt
+embed-resources: TRUE
+page-layout: full
+params:
+  inst: Furman University 
+  year: 2021
+geometry:
+      - top=2cm
+---
+
+```{r}
+#| echo: false
+#| output: false
+
+library(tidyverse)
+library(lubridate)
+library(assertr)
+library(quarto)
+library(readxl)
+library(glue)
+library(kableExtra)
+library(janitor)
+
+curr_year <- params$year
+inst      <- params$inst
+
+root <- getwd()
+
+dta <- read_excel(file.path(root,glue("EADA_{curr_year}.xlsx")), sheet = 1) %>%
+  filter(institution_name == inst) %>%
+  verify(nrow(.) == 1)
+
+location <- paste0(dta %>% pull(city_txt),", ", dta %>% pull(state_cd))
+
+sy <- paste0(params$year - 1,"-",params$year)
+
+```
+
+```{=latex}
+\vspace{-2.5cm}
+```
+
+**Year:** `r sy`
+
+**Institution:** `r dta %>% pull(institution_name)`
+
+**Location:** `r location`
+
+**Institution type:** `r dta %>% pull(sector_name)`
+
+**NCAA classification:** `r dta %>% pull(classification_name)`
+
+**Total student body size:** `r format(dta %>% pull(EFTotalCount), big.mark = ",")`
+
+## I. Summary of sports offerings and participation
+
+```{r}
+#| echo: false
+#| output: true
+
+all_sports <- dta %>%
+  select(starts_with(c("PARTIC_WOMEN","PARTIC_MEN"))) %>%
+  pivot_longer(cols = everything(), 
+               names_to = c("gender", "Sport"), 
+               values_to = "participants",
+               names_pattern = "PARTIC_(\\w+)_(.*)") %>%
+  filter(!is.na(participants) & participants > 0) %>%
+  mutate(gender = str_to_title(gender),
+         Sport  = case_when(Sport == "BchVoll"    ~ "Beach Volleyball",
+                            Sport == "Bskball"    ~ "Basketball",
+                            Sport == "Eqstrian"   ~ "Equestrian",
+                            Sport == "FldHcky"    ~ "Field Hockey",
+                            Sport == "Gymn"       ~ "Gymnastics",
+                            Sport == "IceHcky"    ~ "Ice Hockey",
+                            Sport == "Lacrsse"    ~ "Lacrosse",
+                            Sport == "OthSpts"    ~ "other Sports",
+                            Sport == "SwimDivng"  ~ "Swimming \\& Diving",
+                            Sport == "SynSwim"    ~ "Synchronized Swimming",
+                            Sport == "TblTennis"  ~ "Table Tennis",
+                            Sport == "Trckcomb"   ~ "Track \\& Field (Combined)",
+                            Sport == "TrkFldIn"   ~ "Indoor Track \\& Field",
+                            Sport == "TrkFldOut"  ~ "Outdoor Track \\& Field",
+                            Sport == "Vollball"   ~ "Volleyball",
+                            Sport == "WaterPolo"  ~ "Water Polo",
+                            Sport == "WgtLift"    ~ "Weightlifting",
+                            Sport == "XCountry"   ~ "Cross country",
+                            TRUE                  ~ Sport))
+
+total_sports <- all_sports %>%
+  group_by(gender) %>%
+  summarise(n_sports = n()) %>%
+  pivot_wider(names_from = gender, values_from = n_sports) %>%
+  ungroup() %>%
+  select(Women,Men)
+
+sports_by_gender <- all_sports %>%
+  pivot_wider(names_from = gender, values_from = participants) %>%
+  arrange(Sport)
+
+total_sports %>%
+  kable(escape = F, booktabs = T, format = "latex", align = "c", caption = "Number of total sports offered, by gender") %>%
+  kable_styling(latex_options = c("HOLD_position","repeat_header"), full_width = TRUE) 
+
+sports_by_gender %>%
+  adorn_totals() %>%
+  mutate(across(where(is.numeric), ~as.character(.x))) %>%
+  mutate(across(everything(), ~ifelse(is.na(.x), "\u2013",.x))) %>%
+  kable(escape = F, booktabs = T, format = "latex", align = "c", caption = "Number of students participating in sports, by gender") %>%
+  kable_styling(latex_options = c("HOLD_position","repeat_header"), full_width = TRUE) %>%
+  row_spec(nrow(sports_by_gender), hline_after = T, extra_latex_after = "%") %>%
+  row_spec(nrow(sports_by_gender)+1,bold=T) 
+
+```
+
+## II. Salary Snapshot
+
+```{r}
+#| echo: false
+#| output: true
+
+plot_dta <- dta %>%
+  select(starts_with(c("STUDENTAID","RECRUITEXP","ASCOACH_SAL_FTE","HDCOACH_SAL_FTE")) & !ends_with(c("COED","TOTAL"))) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = c("type","gender"),
+    values_to = "expense",
+    names_pattern = "(STUDENTAID|RECRUITEXP|HDCOACH_SALARY|ASCOACH_SAL_FTE|HDCOACH_SAL_FTE)_(.*)"
+  ) 
+
+coach_sal <- plot_dta %>%
+  filter(grepl("SAL_FTE",type, fixed = TRUE)) %>%
+  mutate(type = case_when(grepl("ASCOACH",type,fixed = TRUE) ~ "Assistant coach",
+                          TRUE                               ~ "Head coach"),
+         gender = case_when(gender == "WOMN" ~ "Women's teams",
+                            TRUE             ~ "Men's teams")) %>%
+  mutate(type = factor(type, levels = c("Head coach","Assistant coach")))
+  
+ggplot(data = coach_sal, aes(x = type, y = expense, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  geom_text(aes(label = scales::dollar(expense)), position = position_dodge(width = 0.9), vjust = -1) +
+  theme_minimal() +
+  labs(x = "",
+       y = "Average full-time salary") +
+  ggtitle("Figure 1: Average full-time coaching salary, \nby team gender and coach type") +
+  theme(plot.title = element_text(hjust = 0.5),
+        legend.title = element_blank(),
+        legend.key = element_blank(),
+        legend.background = element_rect(color = NA),
+        legend.position="bottom") +
+  scale_fill_brewer(palette = "Accent") +
+  scale_y_continuous(labels = scales::dollar_format(prefix="$"), expand = c(0.2,0))
+  
+```
+## References
+
+`r glue("U.S. Department of Education, Office of Postsecondary Education, Equity in Athletics Disclosure Act (EADA) survey, {sy}.")`
