@@ -1,0 +1,43 @@
+---
+title: "Gender Equity in College Sports"
+subtitle: "Massive Data Fundamentals final project"
+author: Bridgette Sullivan, Jasmine Jia, Katharyn Loweth, Maria Bartlett
+editor: visual
+format: 
+  html: 
+    embed-resources: true
+toc: TRUE
+toc-location: left
+toc-depth: 7
+---
+
+## Policy context
+
+### Equity in Athletics Disclosure Act (EADA)
+
+## Data 
+
+## Research questions
+
+## Data pipeline
+
+## Analyses
+
+### Exploratory
+
+```{r}
+#| echo: fenced
+#| eval: false
+head(mtcars)
+
+```
+
+### Unsupervised
+
+```{r}
+#| eval: true
+#| echo: false
+head(mtcars)
+```
+
+## Project pitch
