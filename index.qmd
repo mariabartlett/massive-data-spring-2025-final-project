@@ -25,10 +25,50 @@ toc-depth: 7
 
 ### Exploratory
 
+This section takes a closer look at disparities, and trends in gender representation across institutions and sports. By analyzing participation rates, expenses, operating expenses, and revenue, the goal is to surface both progress and persistent gaps in gender equality. These visualizations below show the many outliers that exist throughout each of these areas.<br><br>
+
 ```{r}
-#| echo: fenced
-#| eval: false
-head(mtcars)
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+
+# Load data
+gender_data = read.csv('data/all_sports_data.csv')
+
+library(ggplot2)
+
+ggplot(gender_data, aes(x = gender, y = exp, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "Boxplot by Gender for Expenses", x = "Gender", y = "Expenses") +
+  scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
+  theme_minimal()
+
+ggplot(gender_data, aes(x = gender, y = opexpperpart, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "Boxplot by Gender for Operating Expenses per Partcipant", x = "Gender", y = "Operating Expenses per Participant") +
+  scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
+  theme_minimal()
+
+
+ggplot(gender_data, aes(x = gender, y = opexpperteam, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "Boxplot by Gender for Operating Expenses per Team", x = "Gender", y = "Operating Expenses per Team") +
+  scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
+  theme_minimal()
+
+
+ggplot(gender_data, aes(x = gender, y = partic, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "Boxplot by Gender for Participation", x = "Gender", y = "Participation") +
+  scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
+  theme_minimal()
+
+ggplot(gender_data, aes(x = gender, y = rev, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "Boxplot by Gender for Revenue", x = "Gender", y = "Revenue") +
+  scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
+  theme_minimal()
 
 ```
 
@@ -49,7 +89,7 @@ library(plotly)
 library(dplyr)
 
 # Read data from cleaned python file
-inst_level_numerical_no_coed_no_na_no_name = read.csv('inst_level_pca_data.csv')
+inst_level_numerical_no_coed_no_na_no_name = read.csv('data/inst_level_pca_data.csv')
 
 # Create a custom hover text
 inst_level_numerical_no_coed_no_na_no_name$hover_text <- paste0(
@@ -79,8 +119,8 @@ fig <- fig %>% layout(
 
 fig
 ```
-<br><br>
-There are additional use cases where a school administrator may want to see similar universities to their own in this clustering algorithm. The next two examples show what administrators for schools like Georgetown or Furman might see when entering in their own universities and finding their nearest neighbors. Some of the results may be obvious, but others may be less so, leading to a reason for different schools to connect on their gender equity in sports and how they can improve or understand other programs. For example, Georgetown is close to many schools in their conference, but schools like East Carolina and Old Dominion are not far away from them and would maybe be less obvious schools to connect with. <br><br>
+
+<br><br> There are additional use cases where a school administrator may want to see similar universities to their own in this clustering algorithm. The next two examples show what administrators for schools like Georgetown or Furman might see when entering in their own universities and finding their nearest neighbors. Some of the results may be obvious, but others may be less so, leading to a reason for different schools to connect on their gender equity in sports and how they can improve or understand other programs. For example, Georgetown is close to many schools in their conference, but schools like East Carolina and Old Dominion are not far away from them and would maybe be less obvious schools to connect with. <br><br>
 
 ```{r}
 #| eval: true
@@ -174,9 +214,8 @@ fig <- plot_ly(
 fig
 
 ```
-<br><br>
-As for Furman, the schools nearest to them seem much less intuitive, with most being on the west coast which is quite the distance from the South Carolina school. These connections could help to facilitate unique discussions on how gender equity can be improved across various regions.
-<br><br>
+
+<br><br> As for Furman, the schools nearest to them seem much less intuitive, with most being on the west coast which is quite the distance from the South Carolina school. These connections could help to facilitate unique discussions on how gender equity can be improved across various regions. <br><br>
 
 ```{r}
 #| eval: true
@@ -273,12 +312,16 @@ fig
 
 #### Sport Level
 
+Another use case is to compare gender by sport. Again, using PCA a scatterplot can be created and filtered by sport to see the differences by gender. Below, there is a plot for Basketball, where one can see that men's teams differ drastically from women's teams.
+
+<br><br>
+
 ```{r}
 #| eval: true
 #| echo: false
 #| warning: false
 #| message: false
-basketball_data = read.csv('basketball_sport_data.csv')
+basketball_data = read.csv('data/basketball_sport_data.csv')
 
 # Create a custom hover text
 basketball_data$hover_text <- paste0(
@@ -311,13 +354,14 @@ fig
 
 ```
 
+<br><br>When looking in comparison at Cross Country/Track & Field, we see much fewer discrepancies between men's and women's teams. <br><br>
 
 ```{r}
 #| eval: true
 #| echo: false
 #| warning: false
 #| message: false
-xc_tf_data = read.csv('xctf_sport_data.csv')
+xc_tf_data = read.csv('data/xctf_sport_data.csv')
 
 # Create a custom hover text
 xc_tf_data$hover_text <- paste0(
