@@ -174,10 +174,13 @@ background-size: cover;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#step-1-raw-data-upload-to-s3" id="toc-step-1-raw-data-upload-to-s3" class="nav-link active" data-scroll-target="#step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</a></li>
+  <li><a href="#data-pipeline" id="toc-data-pipeline" class="nav-link active" data-scroll-target="#data-pipeline">Data pipeline</a>
+  <ul class="collapse">
+  <li><a href="#step-1-raw-data-upload-to-s3" id="toc-step-1-raw-data-upload-to-s3" class="nav-link" data-scroll-target="#step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</a></li>
   <li><a href="#step-2-cluster-setup-with-emr" id="toc-step-2-cluster-setup-with-emr" class="nav-link" data-scroll-target="#step-2-cluster-setup-with-emr">STEP 2: Cluster Setup with EMR</a></li>
   <li><a href="#step-03-launch-jupyter-on-emr-using-ssh" id="toc-step-03-launch-jupyter-on-emr-using-ssh" class="nav-link" data-scroll-target="#step-03-launch-jupyter-on-emr-using-ssh">STEP 03: Launch Jupyter on EMR using SSH</a></li>
   <li><a href="#step-04-load-analyze-data" id="toc-step-04-load-analyze-data" class="nav-link" data-scroll-target="#step-04-load-analyze-data">STEP 04: Load &amp; Analyze Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -187,6 +190,8 @@ background-size: cover;
 
 
 
+<section id="data-pipeline" class="level1">
+<h1>Data pipeline</h1>
 <p>Our analysis of gender equity in college sports required a robust data processing infrastructure to handle the EADA datasets. We implemented a cloud-based pipeline using AWS services to ensure scalability and reproducibility.</p>
 <p>The EADA data contains multiple years of information across hundreds of institutions, with dozens of metrics for each sport and gender combination. This volume and complexity of data necessitated a solution beyond local computing resources. We selected AWS as our cloud provider due to its comprehensive suite of data processing services and strong integration capabilities.</p>
 <p><img src="04_FinalReport/_images/pipeline.png" class="img-fluid"></p>
@@ -211,6 +216,7 @@ background-size: cover;
 <p>After completing our analytical transformations, the processed gender equity datasets are stored back in our S3 bucket in a structured format. By returning these processed datasets to S3, we maintain a complete data lineage from raw EADA submissions to final analytical outputs. This approach ensures reproducibility and allows team members to access the processed data through various tools, including direct connections from R for the visualization work presented in our exploratory and unsupervised learning sections. The S3 storage also facilitates version control as we refine our equity analyses over time, enabling us to track changes in gender disparities across multiple academic years of athletic department operations.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
