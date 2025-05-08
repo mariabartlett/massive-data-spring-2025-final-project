@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -59,6 +93,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -131,7 +168,35 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#concept" id="toc-concept" class="nav-link active" data-scroll-target="#concept">Concept</a></li>
+  <li><a href="#report-production-walk-through" id="toc-report-production-walk-through" class="nav-link" data-scroll-target="#report-production-walk-through">Report production walk-through</a>
+  <ul>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
+  <li><a href="#report-template" id="toc-report-template" class="nav-link" data-scroll-target="#report-template">Report template</a>
+  <ul>
+  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">YAML header</a></li>
+  <li><a href="#using-parameters" id="toc-using-parameters" class="nav-link" data-scroll-target="#using-parameters">Using parameters</a></li>
+  <li><a href="#displaying-basic-institution-information" id="toc-displaying-basic-institution-information" class="nav-link" data-scroll-target="#displaying-basic-institution-information">Displaying basic institution information</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables">Tables</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
+  </ul></li>
+  <li><a href="#running-the-reports" id="toc-running-the-reports" class="nav-link" data-scroll-target="#running-the-reports">Running the reports</a></li>
+  <li><a href="#reports" id="toc-reports" class="nav-link" data-scroll-target="#reports">Reports</a>
+  <ul>
+  <li><a href="#georgetown-university" id="toc-georgetown-university" class="nav-link" data-scroll-target="#georgetown-university">Georgetown University</a></li>
+  <li><a href="#university-of-north-carolina-at-chapel-hill" id="toc-university-of-north-carolina-at-chapel-hill" class="nav-link" data-scroll-target="#university-of-north-carolina-at-chapel-hill">University of North Carolina at Chapel Hill</a></li>
+  <li><a href="#duke-university" id="toc-duke-university" class="nav-link" data-scroll-target="#duke-university">Duke University</a></li>
+  <li><a href="#furman-university" id="toc-furman-university" class="nav-link" data-scroll-target="#furman-university">Furman University</a></li>
+  <li><a href="#university-of-michigan-ann-arbor" id="toc-university-of-michigan-ann-arbor" class="nav-link" data-scroll-target="#university-of-michigan-ann-arbor">University of Michigan-Ann Arbor</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -153,9 +218,417 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Hi there!</p>
+<p>In this section, we present a potential future use for the EADA data that is well-suited for a cloud computing environment, has high potential value for academic institutions, and is remarkably efficient to execute.</p>
+<section id="concept" class="level2">
+<h2 class="anchored" data-anchor-id="concept">Concept</h2>
+<p>The institution-level structure of the EADA files are ideal for generating <strong>standardized, institution-specific reports</strong> that provide a snapshot of the sports equity landscape at the institution. Because multiple years of data are available, it is also highly feasible to generate cross-year institution comparison reports, either for a particular institution or for the entire institution universe. Because each file contains 1,800+ institutions and reports are not dependent on one another, this is an <strong>ideal task to parallelize</strong> in a cloud environment.</p>
+</section>
+<section id="report-production-walk-through" class="level2">
+<h2 class="anchored" data-anchor-id="report-production-walk-through">Report production walk-through</h2>
+<p>In this section, we present a tutorial on how to prepare year-specific snapshot files for a set of institutions using R. For the purpose of this tutorial, we deployed these steps locally on a small subset of institutions. However, in the final section, we will discuss thoughts for scaling this task up for execution in the cloud.</p>
+<section id="data-structure" class="level3">
+<h3 class="anchored" data-anchor-id="data-structure">Data structure</h3>
+<p>Below, we illustrate the structure of the EADA data for four institutions from the 2022-23 EADA file.</p>
+<div class="cell-output-display">
+<table class="table" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">unitid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">OPEID</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">institution_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">addr1_txt</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">addr2_txt</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">city_txt</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">state_cd</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">zip_text</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ClassificationCode</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classification_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ClassificationOther</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EFMaleCount</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EFFemaleCount</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EFTotalCount</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sector_cd</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sector_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUDENTAID_MEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUDENTAID_WOMEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUDENTAID_COED</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUDENTAID_TOTAL</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUAID_MEN_RATIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUAID_WOMEN_RATIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">STUAID_COED_RATIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">RECRUITEXP_MEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">RECRUITEXP_WOMEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">RECRUITEXP_COED</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">RECRUITEXP_TOTAL</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">HDCOACH_SALARY_MEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">HDCOACH_SALARY_WOMEN</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">HDCOACH_SALARY_COED</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">170976</td>
+<td style="text-align: left;">00232500</td>
+<td style="text-align: left;">University of Michigan-Ann Arbor</td>
+<td style="text-align: left;">1109 Geddes Ave</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Ann Arbor</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: left;">48109</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">NCAA Division I-FBS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">14705</td>
+<td style="text-align: left;">16443</td>
+<td style="text-align: left;">31148</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Public, 4-year or above</td>
+<td style="text-align: left;">17929935</td>
+<td style="text-align: left;">13947339</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">31877274</td>
+<td style="text-align: left;">56</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">3876973</td>
+<td style="text-align: left;">940960</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">4817933</td>
+<td style="text-align: left;">1086369</td>
+<td style="text-align: left;">258780</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">198419</td>
+<td style="text-align: left;">00292000</td>
+<td style="text-align: left;">Duke University</td>
+<td style="text-align: left;">103 Allen Bldg</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Durham</td>
+<td style="text-align: left;">NC</td>
+<td style="text-align: left;">27708</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">NCAA Division I-FBS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3114</td>
+<td style="text-align: left;">3429</td>
+<td style="text-align: left;">6543</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Private nonprofit, 4-year or above</td>
+<td style="text-align: left;">14309544</td>
+<td style="text-align: left;">13291616</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">27601160</td>
+<td style="text-align: left;">52</td>
+<td style="text-align: left;">48</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2459555</td>
+<td style="text-align: left;">574848</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3034403</td>
+<td style="text-align: left;">687176</td>
+<td style="text-align: left;">209582</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">199120</td>
+<td style="text-align: left;">00297400</td>
+<td style="text-align: left;">University of North Carolina at Chapel Hill</td>
+<td style="text-align: left;">103 South Bldg Cb 9100</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Chapel Hill</td>
+<td style="text-align: left;">NC</td>
+<td style="text-align: left;">27599</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">NCAA Division I-FBS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">7532</td>
+<td style="text-align: left;">11630</td>
+<td style="text-align: left;">19162</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Public, 4-year or above</td>
+<td style="text-align: left;">8398938</td>
+<td style="text-align: left;">6738951</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">15137889</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">45</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2155890</td>
+<td style="text-align: left;">848579</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3004469</td>
+<td style="text-align: left;">747659</td>
+<td style="text-align: left;">255997</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">218070</td>
+<td style="text-align: left;">00343400</td>
+<td style="text-align: left;">Furman University</td>
+<td style="text-align: left;">3300 Poinsett Highway</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Greenville</td>
+<td style="text-align: left;">SC</td>
+<td style="text-align: left;">296136162</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">NCAA Division I-FCS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">928</td>
+<td style="text-align: left;">1331</td>
+<td style="text-align: left;">2259</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Private nonprofit, 4-year or above</td>
+<td style="text-align: left;">7852046</td>
+<td style="text-align: left;">4732379</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">12584425</td>
+<td style="text-align: left;">62</td>
+<td style="text-align: left;">38</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">263225</td>
+<td style="text-align: left;">141196</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">404421</td>
+<td style="text-align: left;">196422</td>
+<td style="text-align: left;">99950</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</section>
+<section id="report-template" class="level3">
+<h3 class="anchored" data-anchor-id="report-template">Report template</h3>
+<p>Next, we identify key statistics we want each report to contain. We will present:</p>
+<ul>
+<li><p>A table with the total number of sports offered, by gender</p></li>
+<li><p>A table with the number of students participating in each sport, by gender</p></li>
+<li><p>A figure with average full−time coaching salary, by team gender and coach type (head vs.&nbsp;assistant)</p></li>
+</ul>
+<section id="yaml-header" class="level4">
+<h4 class="anchored" data-anchor-id="yaml-header">YAML header</h4>
+<p>We will create a Quarto <code>.qmd</code> file that will be the template for the report. Importantly, the document’s YAML header should include the parameters that vary during report production. In this case, these are:</p>
+<ul>
+<li><p>Institution name</p></li>
+<li><p>School year (spring)</p></li>
+</ul>
+<p>We initialize our default parameter values at University of North Carolina at Chapel Hill for 2022-23.</p>
+</section>
+<section id="using-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="using-parameters">Using parameters</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(assertr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>root <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># place parameters into variables</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>curr_year <span class="ot">&lt;-</span> params<span class="sc">$</span>year</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>inst      <span class="ot">&lt;-</span> params<span class="sc">$</span>inst</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># import year-specific data and subset to specific institution</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>dta <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">file.path</span>(root,<span class="fu">glue</span>(<span class="st">"EADA_{curr_year}.xlsx"</span>)), <span class="at">sheet =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(institution_name <span class="sc">==</span> inst) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">verify</span>(<span class="fu">nrow</span>(.) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># identify city and state and institution</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>location <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dta <span class="sc">%&gt;%</span> <span class="fu">pull</span>(city_txt),<span class="st">", "</span>, dta <span class="sc">%&gt;%</span> <span class="fu">pull</span>(state_cd))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># format academic year</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>sy <span class="ot">&lt;-</span> <span class="fu">paste0</span>(params<span class="sc">$</span>year <span class="sc">-</span> <span class="dv">1</span>,<span class="st">"-"</span>,params<span class="sc">$</span>year)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="displaying-basic-institution-information" class="level4">
+<h4 class="anchored" data-anchor-id="displaying-basic-institution-information">Displaying basic institution information</h4>
+</section>
+<section id="tables" class="level4">
+<h4 class="anchored" data-anchor-id="tables">Tables</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>all_sports <span class="ot">&lt;-</span> dta <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="fu">c</span>(<span class="st">"PARTIC_WOMEN"</span>,<span class="st">"PARTIC_MEN"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"gender"</span>, <span class="st">"Sport"</span>), </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"participants"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">"PARTIC_(</span><span class="sc">\\</span><span class="st">w+)_(.*)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(participants) <span class="sc">&amp;</span> participants <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gender =</span> <span class="fu">str_to_title</span>(gender),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Sport  =</span> <span class="fu">case_when</span>(Sport <span class="sc">==</span> <span class="st">"BchVoll"</span>    <span class="sc">~</span> <span class="st">"Beach Volleyball"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Bskball"</span>    <span class="sc">~</span> <span class="st">"Basketball"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Eqstrian"</span>   <span class="sc">~</span> <span class="st">"Equestrian"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"FldHcky"</span>    <span class="sc">~</span> <span class="st">"Field Hockey"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Gymn"</span>       <span class="sc">~</span> <span class="st">"Gymnastics"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"IceHcky"</span>    <span class="sc">~</span> <span class="st">"Ice Hockey"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Lacrsse"</span>    <span class="sc">~</span> <span class="st">"Lacrosse"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"OthSpts"</span>    <span class="sc">~</span> <span class="st">"other Sports"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"SwimDivng"</span>  <span class="sc">~</span> <span class="st">"Swimming </span><span class="sc">\\</span><span class="st">&amp; Diving"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"SynSwim"</span>    <span class="sc">~</span> <span class="st">"Synchronized Swimming"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"TblTennis"</span>  <span class="sc">~</span> <span class="st">"Table Tennis"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Trckcomb"</span>   <span class="sc">~</span> <span class="st">"Track </span><span class="sc">\\</span><span class="st">&amp; Field (Combined)"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"TrkFldIn"</span>   <span class="sc">~</span> <span class="st">"Indoor Track </span><span class="sc">\\</span><span class="st">&amp; Field"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"TrkFldOut"</span>  <span class="sc">~</span> <span class="st">"Outdoor Track </span><span class="sc">\\</span><span class="st">&amp; Field"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"Vollball"</span>   <span class="sc">~</span> <span class="st">"Volleyball"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"WaterPolo"</span>  <span class="sc">~</span> <span class="st">"Water Polo"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"WgtLift"</span>    <span class="sc">~</span> <span class="st">"Weightlifting"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                            Sport <span class="sc">==</span> <span class="st">"XCountry"</span>   <span class="sc">~</span> <span class="st">"Cross country"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                            <span class="cn">TRUE</span>                  <span class="sc">~</span> Sport))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>total_sports <span class="ot">&lt;-</span> all_sports <span class="sc">%&gt;%</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_sports =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> gender, <span class="at">values_from =</span> n_sports) <span class="sc">%&gt;%</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Women,Men)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>sports_by_gender <span class="ot">&lt;-</span> all_sports <span class="sc">%&gt;%</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> gender, <span class="at">values_from =</span> participants) <span class="sc">%&gt;%</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Sport)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>total_sports <span class="sc">%&gt;%</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">escape =</span> F, <span class="at">booktabs =</span> T, <span class="at">format =</span> <span class="st">"latex"</span>, <span class="at">align =</span> <span class="st">"c"</span>, <span class="at">caption =</span> <span class="st">"Number of total sports offered, by gender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="fu">c</span>(<span class="st">"HOLD_position"</span>,<span class="st">"repeat_header"</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>sports_by_gender <span class="sc">%&gt;%</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">as.character</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(.x), <span class="st">"\u2013"</span>,.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">escape =</span> F, <span class="at">booktabs =</span> T, <span class="at">format =</span> <span class="st">"latex"</span>, <span class="at">align =</span> <span class="st">"c"</span>, <span class="at">caption =</span> <span class="st">"Number of students participating in sports, by gender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="fu">c</span>(<span class="st">"HOLD_position"</span>,<span class="st">"repeat_header"</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="fu">nrow</span>(sports_by_gender), <span class="at">hline_after =</span> T, <span class="at">extra_latex_after =</span> <span class="st">"%"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="fu">nrow</span>(sports_by_gender)<span class="sc">+</span><span class="dv">1</span>,<span class="at">bold=</span>T) </span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="figure" class="level4">
+<h4 class="anchored" data-anchor-id="figure">Figure</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plot_dta <span class="ot">&lt;-</span> dta <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="fu">c</span>(<span class="st">"STUDENTAID"</span>,<span class="st">"RECRUITEXP"</span>,<span class="st">"ASCOACH_SAL_FTE"</span>,<span class="st">"HDCOACH_SAL_FTE"</span>)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">ends_with</span>(<span class="fu">c</span>(<span class="st">"COED"</span>,<span class="st">"TOTAL"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"type"</span>,<span class="st">"gender"</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"expense"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"(STUDENTAID|RECRUITEXP|HDCOACH_SALARY|ASCOACH_SAL_FTE|HDCOACH_SAL_FTE)_(.*)"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>coach_sal <span class="ot">&lt;-</span> plot_dta <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"SAL_FTE"</span>,type, <span class="at">fixed =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">case_when</span>(<span class="fu">grepl</span>(<span class="st">"ASCOACH"</span>,type,<span class="at">fixed =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Assistant coach"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                          <span class="cn">TRUE</span>                               <span class="sc">~</span> <span class="st">"Head coach"</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">gender =</span> <span class="fu">case_when</span>(gender <span class="sc">==</span> <span class="st">"WOMN"</span> <span class="sc">~</span> <span class="st">"Women's teams"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                            <span class="cn">TRUE</span>             <span class="sc">~</span> <span class="st">"Men's teams"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">factor</span>(type, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Head coach"</span>,<span class="st">"Assistant coach"</span>)))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> coach_sal, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> expense, <span class="at">fill =</span> gender)) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(expense)), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>), <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average full-time salary"</span>) <span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Figure 1: Average full-time coaching salary, </span><span class="sc">\n</span><span class="st">by team gender and coach type"</span>) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position=</span><span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Accent"</span>) <span class="sc">+</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>(<span class="at">prefix=</span><span class="st">"$"</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="dv">0</span>))</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="footnotes" class="level4">
+<h4 class="anchored" data-anchor-id="footnotes">Footnotes</h4>
+<p>Lastly, we’ll add the citation to identify where we got the data:</p>
+</section>
+</section>
+<section id="running-the-reports" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-reports">Running the reports</h3>
+<p>script source: https://rfortherestofus.com/2024/06/parameterized-reporting-quarto</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>inst <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Duke University"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Furman University"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"University of Michigan-Ann Arbor"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">"University of North Carolina at Chapel Hill"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2023</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>reports <span class="ot">&lt;-</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">input =</span> <span class="st">"report_template.qmd"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">output_file =</span> <span class="fu">str_glue</span>(<span class="st">"{inst} {year} annual sports equity report.pdf"</span>),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">execute_params =</span> <span class="fu">map2</span>(inst, year, <span class="sc">~</span> <span class="fu">list</span>(<span class="at">inst =</span> .x, <span class="at">year =</span> .y))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">pwalk</span>(reports, quarto_render)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reports" class="level3">
+<h3 class="anchored" data-anchor-id="reports">Reports</h3>
+<section id="georgetown-university" class="level4">
+<h4 class="anchored" data-anchor-id="georgetown-university">Georgetown University</h4>
+<p><object data="03_Output/02_InstitutionReports/georgetown-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/georgetown-2023.pdf" download="">Download PDF file.</a></object></p>
+</section>
+<section id="university-of-north-carolina-at-chapel-hill" class="level4">
+<h4 class="anchored" data-anchor-id="university-of-north-carolina-at-chapel-hill">University of North Carolina at Chapel Hill</h4>
+<p><object data="03_Output/02_InstitutionReports/unc-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/unc-2023.pdf" download="">Download PDF file.</a></object></p>
+</section>
+<section id="duke-university" class="level4">
+<h4 class="anchored" data-anchor-id="duke-university">Duke University</h4>
+<p><object data="03_Output/02_InstitutionReports/duke-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/duke-2023.pdf" download="">Download PDF file.</a></object></p>
+</section>
+<section id="furman-university" class="level4">
+<h4 class="anchored" data-anchor-id="furman-university">Furman University</h4>
+<p><object data="03_Output/02_InstitutionReports/furman-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/furman-2023.pdf" download="">Download PDF file.</a></object></p>
+</section>
+<section id="university-of-michigan-ann-arbor" class="level4">
+<h4 class="anchored" data-anchor-id="university-of-michigan-ann-arbor">University of Michigan-Ann Arbor</h4>
+<p><object data="03_Output/02_InstitutionReports/umich-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/umich-2023.pdf" download="">Download PDF file.</a></object></p>
+
+
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
