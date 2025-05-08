@@ -25,7 +25,7 @@ Our analysis of gender equity in college sports required a robust data processin
 
 The EADA data contains multiple years of information across hundreds of institutions, with dozens of metrics for each sport and gender combination. This volume and complexity of data necessitated a solution beyond local computing resources. We selected AWS as our cloud provider due to its comprehensive suite of data processing services and strong integration capabilities.
 
-![](pics/pipeline.png)
+![](04_FinalReport/_images/pipeline.png)
 
 ### STEP 1: Raw Data Upload to S3
 
@@ -33,12 +33,12 @@ We begin by storing our raw EADA CSV files in Amazon S3. These datasets contain 
 
 Our Schools.csv file contains sport-specific data across institutions, including participation numbers and expenses separated by gender. The instLevel.csv file provides institution-wide metrics such as total athletics revenue and gender proportionality measurements. Both files contain sensitive financial information that benefits from S3's security features, while remaining accessible for our gender equity analysis.
 
-![](pics/s3.png)
+![](04_FinalReport/_images/s3.png)
 
 ### STEP 2: Cluster Setup with EMR
 Analyzing gender disparities across hundreds of institutions and dozens of sports requires significant computing power, especially for our unsupervised learning approach. We launched an Amazon EMR cluster to handle the dimensionality reduction and clustering analyses needed to identify patterns in athletic department spending and participation across genders.
 Our EMR environment included Spark for distributed processing of the equity metrics and Jupyter for interactive analysis. While a single-node cluster proved sufficient for our initial investigation into gender gaps in basketball and track programs, EMR's scalability would accommodate future analyses of all NCAA sports across multiple divisions and years—expanding our understanding of gender equity trends.
-![](pics/emr_cluster.png)
+![](04_FinalReport/_images/emr_cluster.png)
 
 ### STEP 03: Launch Jupyter on EMR using SSH
 Once the EMR cluster is active, we SSH into the EC2 Master node and manually start a Jupyter Notebook server on it.
@@ -48,7 +48,7 @@ This gives us a familiar, browser-based Python environment where we can fetch da
 In the notebook, we use boto3 to connect to S3 and load our datasets into Pandas for analysis.
 We then run exploratory data analysis (EDA), correlation checks, visualizations, and prepare our results for export. Detailed analysis will be dicussed in the next section
 
-![](pics/s3results.png)
+![](04_FinalReport/_images/s3results.png)
 
 After completing our analytical transformations, the processed gender equity datasets are stored back in our S3 bucket in a structured format.  By returning these processed datasets to S3, we maintain a complete data lineage from raw EADA submissions to final analytical outputs. This approach ensures reproducibility and allows team members to access the processed data through various tools, including direct connections from R for the visualization work presented in our exploratory and unsupervised learning sections. The S3 storage also facilitates version control as we refine our equity analyses over time, enabling us to track changes in gender disparities across multiple academic years of athletic department operations.
 
@@ -65,7 +65,7 @@ This section takes a closer look at disparities, and trends in gender representa
 #| message: false
 
 # Load data
-gender_data = read.csv('data/all_sports_data.csv')
+gender_data = read.csv('03_Output/01_Analysis/all_sports_data.csv')
 
 library(ggplot2)
 
@@ -120,7 +120,7 @@ library(plotly)
 library(dplyr)
 
 # Read data from cleaned python file
-inst_level_numerical_no_coed_no_na_no_name = read.csv('data/inst_level_pca_data.csv')
+inst_level_numerical_no_coed_no_na_no_name = read.csv('03_Output/01_Analysis/inst_level_pca_data.csv')
 
 # Create a custom hover text
 inst_level_numerical_no_coed_no_na_no_name$hover_text <- paste0(
@@ -352,7 +352,7 @@ Another use case is to compare gender by sport. Again, using PCA a scatterplot c
 #| echo: false
 #| warning: false
 #| message: false
-basketball_data = read.csv('data/basketball_sport_data.csv')
+basketball_data = read.csv('03_Output/01_Analysis/basketball_sport_data.csv')
 
 # Create a custom hover text
 basketball_data$hover_text <- paste0(
@@ -385,17 +385,14 @@ fig
 
 ```
 
-<<<<<<< HEAD
 <br><br>When looking in comparison at Cross Country/Track & Field, we see much fewer discrepancies between men's and women's teams. <br><br>
 
-=======
->>>>>>> 2635112 (Added data pipeline section)
 ```{r}
 #| eval: true
 #| echo: false
 #| warning: false
 #| message: false
-xc_tf_data = read.csv('data/xctf_sport_data.csv')
+xc_tf_data = read.csv('03_Output/01_Analysis/xctf_sport_data.csv')
 
 # Create a custom hover text
 xc_tf_data$hover_text <- paste0(
