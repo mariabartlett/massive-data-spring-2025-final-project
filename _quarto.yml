@@ -1,11 +1,20 @@
 project: 
   type: website
+  render:
+    - index.qmd
+    - policy-context.qmd
+    - data-pipeline.qmd
+    - analyses.qmd
+    - institution-reports.qmd
   
 website: 
   page-navigation: true
-  title: "Making sharable documents with Quarto" 
   site-url: "https://mariabartlett.github.io/massive-data-spring-2025-final-project/" 
   repo-url: https://github.com/mariabartlett/massive-data-spring-2025-final-project
+
+  page-footer:
+    right: "2025 PPOL 5206 final project"
+    left: "Bridgette Sullivan, Jasmine Jia, Katharyn Loweth, & Maria Bartlett"
     
   sidebar:
     tools: 
@@ -18,17 +27,19 @@ website:
     collapse-level: 1
     contents:
       - href: index.qmd
-        text: Welcome
+        text: Project background & site overview
+      - href: policy-context.qmd
+        text: Policy context
+      - href: data-pipeline.qmd
+        text: Data pipeline
+      - href: analyses.qmd
+        text: Analytics
+      - href: institution-reports.qmd
+        text: Institution reports
 
 format:
   html:
-    theme: cosmo
+    theme: lux
     code-copy: true
     code-overflow: wrap
     toc: true
-
-
-filters:
-  - quarto
-
-  

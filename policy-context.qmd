@@ -1,0 +1,21 @@
+---
+title: "Designing a data pipeline to analyze gender equity in college sports"
+subtitle: "Spring 2025 Massive Data Fundamentals final project"
+title-block-banner: track-image.jpg
+include-in-header:
+  - text: |
+      <style>
+      .quarto-title-block .quarto-title-banner {
+        background-position-y: right;
+        height: 200px;
+        text-align: left;
+      }
+      .title {
+        color: black;
+        font-weight: bold
+      }
+      .subtitle {
+        color: black
+      }
+      </style>
+---
