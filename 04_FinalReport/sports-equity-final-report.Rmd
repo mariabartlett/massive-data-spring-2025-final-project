@@ -1,0 +1,54 @@
+---
+title: "Designing a data pipeline to analyze gender equity in college sports"
+subtitle: "PPOL 5206: Massive Data Fundamentals"
+author: Bridgette Sullivan, Jasmine Jia, Katharyn Loweth, & Maria Bartlett
+date: "May 9, 2025"
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+urlcolor: blue
+latex_engine: xelatex
+classoption: fleqn
+header-includes:
+   - \usepackage{booktabs}
+   - \usepackage{siunitx}
+   - \usepackage{bbding}
+   - \usepackage{pdfpages}
+   - \usepackage{float}
+   - \setlength{\mathindent}{0pt}
+   - \setlength{\parindent}{0pt}
+   - \usepackage{caption}
+output: pdf_document
+---
+
+\captionsetup[table]{labelformat=empty}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, results = FALSE}
+
+# clear global environment
+rm(list = ls())
+
+# set seed
+set.seed(12345)
+
+# load packages
+library(tidyverse)
+
+# set relative paths
+root       <- file.path(getwd() %>% dirname())
+
+# define kable styling options
+kable_style <- function(df) {
+  
+  df %>%
+  kbl(full_width = T, 
+      align = "l",
+      booktabs = T) %>%
+  kable_styling(latex_options = c("repeat_header","scale_down","HOLD_position")) 
+}
+
+```
+
+## I. Introduction
+
+## References
+
+## GitHub repository
