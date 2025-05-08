@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Institution reports</title>
+<title>Designing a data pipeline to analyze gender equity in college sports</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,9 +93,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(track-image.jpg);
+background-size: cover;
+      }
+</style>
 
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<style>
+.quarto-title-block .quarto-title-banner {
+  background-position-y: right;
+  height: 200px;
+  text-align: left;
+}
+.title {
+  color: black;
+  font-weight: bold
+}
+.subtitle {
+  color: black
+}
+</style>
 
 
 </head>
@@ -119,7 +140,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Designing a data pipeline to analyze gender equity in college sports</h1>
+            <p class="subtitle lead">Spring 2025 Massive Data Fundamentals final project</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -175,18 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#concept" id="toc-concept" class="nav-link active" data-scroll-target="#concept">Concept</a></li>
   <li><a href="#report-production-walk-through" id="toc-report-production-walk-through" class="nav-link" data-scroll-target="#report-production-walk-through">Report production walk-through</a>
   <ul>
-  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
-  <li><a href="#report-template" id="toc-report-template" class="nav-link" data-scroll-target="#report-template">Report template</a>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">1. Data structure</a></li>
+  <li><a href="#report-template" id="toc-report-template" class="nav-link" data-scroll-target="#report-template">2. Report template</a>
   <ul>
-  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">YAML header</a></li>
-  <li><a href="#using-parameters" id="toc-using-parameters" class="nav-link" data-scroll-target="#using-parameters">Using parameters</a></li>
-  <li><a href="#displaying-basic-institution-information" id="toc-displaying-basic-institution-information" class="nav-link" data-scroll-target="#displaying-basic-institution-information">Displaying basic institution information</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables">Tables</a></li>
-  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
+  <li><a href="#a.-yaml-header" id="toc-a.-yaml-header" class="nav-link" data-scroll-target="#a.-yaml-header">a. YAML header</a></li>
+  <li><a href="#b.-using-parameters" id="toc-b.-using-parameters" class="nav-link" data-scroll-target="#b.-using-parameters">b. Using parameters</a></li>
+  <li><a href="#c.-displaying-basic-institution-information" id="toc-c.-displaying-basic-institution-information" class="nav-link" data-scroll-target="#c.-displaying-basic-institution-information">c.&nbsp;Displaying basic institution information</a></li>
+  <li><a href="#d.-tables" id="toc-d.-tables" class="nav-link" data-scroll-target="#d.-tables">d.&nbsp;Tables</a></li>
+  <li><a href="#e.-figure" id="toc-e.-figure" class="nav-link" data-scroll-target="#e.-figure">e. Figure</a></li>
+  <li><a href="#f.-footnotes" id="toc-f.-footnotes" class="nav-link" data-scroll-target="#f.-footnotes">f.&nbsp;Footnotes</a></li>
   </ul></li>
-  <li><a href="#running-the-reports" id="toc-running-the-reports" class="nav-link" data-scroll-target="#running-the-reports">Running the reports</a></li>
-  <li><a href="#reports" id="toc-reports" class="nav-link" data-scroll-target="#reports">Reports</a>
+  <li><a href="#running-the-reports" id="toc-running-the-reports" class="nav-link" data-scroll-target="#running-the-reports">3. Running the reports</a></li>
+  <li><a href="#reports" id="toc-reports" class="nav-link" data-scroll-target="#reports">4. Reports</a>
   <ul>
   <li><a href="#georgetown-university" id="toc-georgetown-university" class="nav-link" data-scroll-target="#georgetown-university">Georgetown University</a></li>
   <li><a href="#university-of-north-carolina-at-chapel-hill" id="toc-university-of-north-carolina-at-chapel-hill" class="nav-link" data-scroll-target="#university-of-north-carolina-at-chapel-hill">University of North Carolina at Chapel Hill</a></li>
@@ -195,28 +233,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#university-of-michigan-ann-arbor" id="toc-university-of-michigan-ann-arbor" class="nav-link" data-scroll-target="#university-of-michigan-ann-arbor">University of Michigan-Ann Arbor</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#scaling-up" id="toc-scaling-up" class="nav-link" data-scroll-target="#scaling-up">Scaling up</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Institution reports</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
 
 <p>In this section, we present a potential future use for the EADA data that is well-suited for a cloud computing environment, has high potential value for academic institutions, and is remarkably efficient to execute.</p>
 <section id="concept" class="level2">
@@ -227,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="report-production-walk-through">Report production walk-through</h2>
 <p>In this section, we present a tutorial on how to prepare year-specific snapshot files for a set of institutions using R. For the purpose of this tutorial, we deployed these steps locally on a small subset of institutions. However, in the final section, we will discuss thoughts for scaling this task up for execution in the cloud.</p>
 <section id="data-structure" class="level3">
-<h3 class="anchored" data-anchor-id="data-structure">Data structure</h3>
+<h3 class="anchored" data-anchor-id="data-structure">1. Data structure</h3>
 <p>Below, we illustrate the structure of the EADA data for four institutions from the 2022-23 EADA file.</p>
 <div class="cell-output-display">
 <table class="table" data-quarto-postprocess="true">
@@ -267,6 +292,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">131496</td>
+<td style="text-align: left;">00144500</td>
+<td style="text-align: left;">Georgetown University</td>
+<td style="text-align: left;">37th and O St NW</td>
+<td style="text-align: left;">Georgetown University</td>
+<td style="text-align: left;">Washington</td>
+<td style="text-align: left;">DC</td>
+<td style="text-align: left;">200570001</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">NCAA Division I-FCS</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2995</td>
+<td style="text-align: left;">4153</td>
+<td style="text-align: left;">7148</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Private nonprofit, 4-year or above</td>
+<td style="text-align: left;">5559743</td>
+<td style="text-align: left;">5871423</td>
+<td style="text-align: left;">2478</td>
+<td style="text-align: left;">11433644</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">997498</td>
+<td style="text-align: left;">153634</td>
+<td style="text-align: left;">7467</td>
+<td style="text-align: left;">1158599</td>
+<td style="text-align: left;">580565</td>
+<td style="text-align: left;">103748</td>
+<td style="text-align: left;">109326</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">170976</td>
 <td style="text-align: left;">00232500</td>
 <td style="text-align: left;">University of Michigan-Ann Arbor</td>
@@ -298,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">258780</td>
 <td style="text-align: left;">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">198419</td>
 <td style="text-align: left;">00292000</td>
 <td style="text-align: left;">Duke University</td>
@@ -330,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">209582</td>
 <td style="text-align: left;">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">199120</td>
 <td style="text-align: left;">00297400</td>
 <td style="text-align: left;">University of North Carolina at Chapel Hill</td>
@@ -362,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">255997</td>
 <td style="text-align: left;">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">218070</td>
 <td style="text-align: left;">00343400</td>
 <td style="text-align: left;">Furman University</td>
@@ -401,24 +458,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="report-template" class="level3">
-<h3 class="anchored" data-anchor-id="report-template">Report template</h3>
+<h3 class="anchored" data-anchor-id="report-template">2. Report template</h3>
 <p>Next, we identify key statistics we want each report to contain. We will present:</p>
 <ul>
 <li><p>A table with the total number of sports offered, by gender</p></li>
 <li><p>A table with the number of students participating in each sport, by gender</p></li>
 <li><p>A figure with average full−time coaching salary, by team gender and coach type (head vs.&nbsp;assistant)</p></li>
 </ul>
-<section id="yaml-header" class="level4">
-<h4 class="anchored" data-anchor-id="yaml-header">YAML header</h4>
+<section id="a.-yaml-header" class="level4">
+<h4 class="anchored" data-anchor-id="a.-yaml-header">a. YAML header</h4>
 <p>We will create a Quarto <code>.qmd</code> file that will be the template for the report. Importantly, the document’s YAML header should include the parameters that vary during report production. In this case, these are:</p>
 <ul>
 <li><p>Institution name</p></li>
 <li><p>School year (spring)</p></li>
 </ul>
-<p>We initialize our default parameter values at University of North Carolina at Chapel Hill for 2022-23.</p>
+<p>We initialize our default parameter values as <strong>Georgetown University</strong> for <strong>2022-23</strong>.</p>
 </section>
-<section id="using-parameters" class="level4">
-<h4 class="anchored" data-anchor-id="using-parameters">Using parameters</h4>
+<section id="b.-using-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="b.-using-parameters">b. Using parameters</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -460,11 +517,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="displaying-basic-institution-information" class="level4">
-<h4 class="anchored" data-anchor-id="displaying-basic-institution-information">Displaying basic institution information</h4>
+<section id="c.-displaying-basic-institution-information" class="level4">
+<h4 class="anchored" data-anchor-id="c.-displaying-basic-institution-information">c.&nbsp;Displaying basic institution information</h4>
+<p><img src="_images/report1.png" class="img-fluid"></p>
 </section>
-<section id="tables" class="level4">
-<h4 class="anchored" data-anchor-id="tables">Tables</h4>
+<section id="d.-tables" class="level4">
+<h4 class="anchored" data-anchor-id="d.-tables">d.&nbsp;Tables</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -526,9 +584,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p><img src="_images/report2.png" class="img-fluid"></p>
+<p><img src="_images/report3.png" class="img-fluid"></p>
 </section>
-<section id="figure" class="level4">
-<h4 class="anchored" data-anchor-id="figure">Figure</h4>
+<section id="e.-figure" class="level4">
+<h4 class="anchored" data-anchor-id="e.-figure">e. Figure</h4>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -570,14 +630,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p><img src="_images/report4.png" class="img-fluid"></p>
 </section>
-<section id="footnotes" class="level4">
-<h4 class="anchored" data-anchor-id="footnotes">Footnotes</h4>
+<section id="f.-footnotes" class="level4">
+<h4 class="anchored" data-anchor-id="f.-footnotes">f.&nbsp;Footnotes</h4>
 <p>Lastly, we’ll add the citation to identify where we got the data:</p>
+<p><img src="_images/report5.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="running-the-reports" class="level3">
-<h3 class="anchored" data-anchor-id="running-the-reports">Running the reports</h3>
+<h3 class="anchored" data-anchor-id="running-the-reports">3. Running the reports</h3>
 <p>script source: https://rfortherestofus.com/2024/06/parameterized-reporting-quarto</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -604,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="reports" class="level3">
-<h3 class="anchored" data-anchor-id="reports">Reports</h3>
+<h3 class="anchored" data-anchor-id="reports">4. Reports</h3>
 <section id="georgetown-university" class="level4">
 <h4 class="anchored" data-anchor-id="georgetown-university">Georgetown University</h4>
 <p><object data="03_Output/02_InstitutionReports/georgetown-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/georgetown-2023.pdf" download="">Download PDF file.</a></object></p>
@@ -624,10 +686,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="university-of-michigan-ann-arbor" class="level4">
 <h4 class="anchored" data-anchor-id="university-of-michigan-ann-arbor">University of Michigan-Ann Arbor</h4>
 <p><object data="03_Output/02_InstitutionReports/umich-2023.pdf" type="application/pdf" width="600" height="400"><a href="03_Output/02_InstitutionReports/umich-2023.pdf" download="">Download PDF file.</a></object></p>
-
-
 </section>
 </section>
+</section>
+<section id="scaling-up" class="level2">
+<h2 class="anchored" data-anchor-id="scaling-up">Scaling up</h2>
+
+
 </section>
 
 </main> <!-- /main -->
