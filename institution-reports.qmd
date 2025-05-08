@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: "Designing a data pipeline to analyze gender equity in college sports"
 subtitle: "Spring 2025 Massive Data Fundamentals final project"
 title-block-banner: track-image.jpg
@@ -366,3 +367,9 @@ pwalk(reports, quarto_render)
 {{< pdf "03_Output/02_InstitutionReports/umich-2023.pdf" width=600 height=400 >}}
 
 ## Scaling up
+=======
+title: Institution reports
+---
+
+Hi there!
+>>>>>>> 6f60cb5b77168ee48bb25e33a74ed17b88a5a24a
