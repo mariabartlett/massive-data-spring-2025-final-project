@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Designing a data pipeline to analyze gender equity in college sports</title>
+<title>Data pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./policy-context.html" rel="next">
+<link href="./analyses.html" rel="next">
+<link href="./policy-context.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,27 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background-image: url(track.jpg);
-background-size: cover;
-      }
-</style>
-<style>
-.quarto-title-block .quarto-title-banner {
-  background-position-y: right;
-  height: 200px;
-  text-align: left;
-}
-.title {
-  color: black;
-  font-weight: bold
-}
-.subtitle {
-  color: white
-}
-</style>
 
 
 </head>
@@ -93,7 +73,7 @@ background-size: cover;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Project background</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-pipeline.html">Data pipeline</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -103,24 +83,7 @@ background-size: cover;
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Designing a data pipeline to analyze gender equity in college sports</h1>
-            <p class="subtitle lead">Spring 2025 Massive Data Fundamentals final project</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -135,7 +98,7 @@ background-size: cover;
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project background</span></a>
   </div>
 </li>
@@ -147,7 +110,7 @@ background-size: cover;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-pipeline.html" class="sidebar-item-text sidebar-link">
+  <a href="./data-pipeline.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data pipeline</span></a>
   </div>
 </li>
@@ -173,18 +136,55 @@ background-size: cover;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-background" id="toc-project-background" class="nav-link active" data-scroll-target="#project-background">Project background</a></li>
+  <li><a href="#step-1-raw-data-upload-to-s3" id="toc-step-1-raw-data-upload-to-s3" class="nav-link active" data-scroll-target="#step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</a></li>
+  <li><a href="#step-2-cluster-setup-with-emr" id="toc-step-2-cluster-setup-with-emr" class="nav-link" data-scroll-target="#step-2-cluster-setup-with-emr">STEP 2: Cluster Setup with EMR</a></li>
+  <li><a href="#step-03-launch-jupyter-on-emr-using-ssh" id="toc-step-03-launch-jupyter-on-emr-using-ssh" class="nav-link" data-scroll-target="#step-03-launch-jupyter-on-emr-using-ssh">STEP 03: Launch Jupyter on EMR using SSH</a></li>
+  <li><a href="#step-04-load-analyze-data" id="toc-step-04-load-analyze-data" class="nav-link" data-scroll-target="#step-04-load-analyze-data">STEP 04: Load &amp; Analyze Data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data pipeline</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="project-background" class="level2">
-<h2 class="anchored" data-anchor-id="project-background">Project background</h2>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Our analysis of gender equity in college sports required a robust data processing infrastructure to handle the EADA datasets. We implemented a cloud-based pipeline using AWS services to ensure scalability and reproducibility.</p>
+<p>The EADA data contains multiple years of information across hundreds of institutions, with dozens of metrics for each sport and gender combination. This volume and complexity of data necessitated a solution beyond local computing resources. We selected AWS as our cloud provider due to its comprehensive suite of data processing services and strong integration capabilities.</p>
+<p><img src="04_FinalReport/_images/pipeline.png" class="img-fluid"></p>
+<section id="step-1-raw-data-upload-to-s3" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</h3>
+<p>We begin by storing our raw EADA CSV files in Amazon S3. These datasets contain critical gender equity indicators including team roster sizes, coaching staff compensation, recruitment expenses, and scholarship allocations.</p>
+<p>Our Schools.csv file contains sport-specific data across institutions, including participation numbers and expenses separated by gender. The instLevel.csv file provides institution-wide metrics such as total athletics revenue and gender proportionality measurements. Both files contain sensitive financial information that benefits from S3’s security features, while remaining accessible for our gender equity analysis.</p>
+<p><img src="04_FinalReport/_images/s3.png" class="img-fluid"></p>
+</section>
+<section id="step-2-cluster-setup-with-emr" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-cluster-setup-with-emr">STEP 2: Cluster Setup with EMR</h3>
+<p>Analyzing gender disparities across hundreds of institutions and dozens of sports requires significant computing power, especially for our unsupervised learning approach. We launched an Amazon EMR cluster to handle the dimensionality reduction and clustering analyses needed to identify patterns in athletic department spending and participation across genders. Our EMR environment included Spark for distributed processing of the equity metrics and Jupyter for interactive analysis. While a single-node cluster proved sufficient for our initial investigation into gender gaps in basketball and track programs, EMR’s scalability would accommodate future analyses of all NCAA sports across multiple divisions and years—expanding our understanding of gender equity trends. <img src="04_FinalReport/_images/emr_cluster.png" class="img-fluid"></p>
+</section>
+<section id="step-03-launch-jupyter-on-emr-using-ssh" class="level3">
+<h3 class="anchored" data-anchor-id="step-03-launch-jupyter-on-emr-using-ssh">STEP 03: Launch Jupyter on EMR using SSH</h3>
+<p>Once the EMR cluster is active, we SSH into the EC2 Master node and manually start a Jupyter Notebook server on it. This gives us a familiar, browser-based Python environment where we can fetch data from S3, run our analysis, and visualize the output. This step requires setting up SSH tunneling so that we can access the notebook from our local browser securely.</p>
+</section>
+<section id="step-04-load-analyze-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-04-load-analyze-data">STEP 04: Load &amp; Analyze Data</h3>
+<p>In the notebook, we use boto3 to connect to S3 and load our datasets into Pandas for analysis. We then run exploratory data analysis (EDA), correlation checks, visualizations, and prepare our results for export. Detailed analysis will be dicussed in the next section</p>
+<p><img src="04_FinalReport/_images/s3results.png" class="img-fluid"></p>
+<p>After completing our analytical transformations, the processed gender equity datasets are stored back in our S3 bucket in a structured format. By returning these processed datasets to S3, we maintain a complete data lineage from raw EADA submissions to final analytical outputs. This approach ensures reproducibility and allows team members to access the processed data through various tools, including direct connections from R for the visualization work presented in our exploratory and unsupervised learning sections. The S3 storage also facilitates version control as we refine our equity analyses over time, enabling us to track changes in gender disparities across multiple academic years of athletic department operations.</p>
 
 
 </section>
@@ -425,10 +425,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./policy-context.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Policy context</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./policy-context.html" class="pagination-link">
-        <span class="nav-page-text">Policy context</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analyses.html" class="pagination-link">
+        <span class="nav-page-text">Analytics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
