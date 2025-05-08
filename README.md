@@ -1,6 +1,6 @@
 # Designing a data pipeline to analyze gender equity in college sports
 
-## Project description
+## Project Description
 
 ## Repository Structure & File Contents
 
@@ -21,23 +21,23 @@
             </td>
             <tr>
         		<td rowspan="2">02_Scripts</td>
-			        <td><tt>01_Analysis/</td>
+			        <td>01_Analysis/</td>
                     <td>Jupyter notebook to conduct exploratory and unsupervised analyses</td>
                 </td></tr>
-        		    <td><tt>02_InstitutionReports/</tt></td>
+        		    <td>02_InstitutionReports/</td>
 			        <td>R code to produce institution-specific equity reports</td>
                 </td></tr>
             </td>
             <tr>
         		<td rowspan="2">03_Output</td>
-			        <td><tt>01_Analysis/</td>
+			        <td>01_Analysis/</td>
                     <td></td>
                 </td></tr>
-        		    <td><tt>02_InstitutionReports/</tt></td>
+        		    <td>02_InstitutionReports/</td>
 			        <td>Example institution report PDFs</td>
                 </td></tr>
             </td>
-        		<td><tt>04_FinalReport</tt></td>
+        		<td>04_FinalReport</td>
 			<td><tt>sports-equity-final-report.pdf<tt></td>
 			<td>Final report</td>
     		</tr>
