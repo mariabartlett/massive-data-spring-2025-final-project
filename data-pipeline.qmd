@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD
 title: "Designing a data pipeline to analyze gender equity in college sports"
 subtitle: "Spring 2025 Massive Data Fundamentals final project"
 title-block-banner: track-image.jpg
@@ -19,9 +18,6 @@ include-in-header:
         color: black
       }
       </style>
-=======
-title: Data pipeline
->>>>>>> 6f60cb5b77168ee48bb25e33a74ed17b88a5a24a
 ---
 
 Our analysis of gender equity in college sports required a robust data processing infrastructure to handle the EADA datasets. We implemented a cloud-based pipeline using AWS services to ensure scalability and reproducibility.
