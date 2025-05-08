@@ -41,10 +41,6 @@
 			<td><tt>sports-equity-final-report.pdf<tt></td>
 			<td>Final project report</td>
     		</tr>
-            	<td>Root folder</td>
-			<td><tt>index.html</tt></td>
-			<td>Final project website</td>
-    		</tr>
 
 </table>
 
