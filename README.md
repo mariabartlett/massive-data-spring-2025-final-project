@@ -39,10 +39,19 @@
             </td>
         		<td>04_FinalReport</td>
 			<td><tt>sports-equity-final-report.pdf<tt></td>
-			<td>Final report</td>
+			<td>Final project report</td>
+    		</tr>
+            	<td>Root folder</td>
+			<td><tt>index.html</tt></td>
+			<td>Final project website</td>
     		</tr>
 
 </table>
+
+## Website
+
+Our project website is available at: https://mariabartlett.github.io/massive-data-spring-2025-final-project/
+
 
 ## Authors
 
