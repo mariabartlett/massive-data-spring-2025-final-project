@@ -1,0 +1,31 @@
+---
+title: "Designing a data pipeline to analyze gender equity in college sports"
+subtitle: "Spring 2025 Massive Data Fundamentals final project"
+title-block-banner: track-image.jpg
+include-in-header:
+  - text: |
+      <style>
+      .quarto-title-block .quarto-title-banner {
+        background-position-y: right;
+        height: 200px;
+        text-align: left;
+      }
+      .title {
+        color: black;
+        font-weight: bold
+      }
+      .subtitle {
+        color: black
+      }
+      </style>
+---
+
+## Research Questions: 
+<br><br>
+For our final project, we chose to explore the nuances of gender gap in intercollegiate athletics using the EADA datasets. Specifically, our research is guided by the following questions:
+<br><br>1.) Have the disparities between men's and women's sports increased, decreased, or remained stable over the 21-year period? Do these disparities vary by sport?
+<br><br>2.)What distinct clusters of institutions emerge considering EADA variables for a single academic year?
+<br><br>
+## Data Source:
+<br><br>
+We downloaded the EADA dataset directly from the Department of Education website. Our EADA dataset consists of csv files, one for each academic year from years 2002-2023. Each dataset includes data on coach salaries, roster information, and recruitment expenses for all applicable male and female college athletic programs. There are approximately 4,000 variables captured within a single academic year. Each observation in the dataset represents a unique higher education institution that met the two criteria previously mentioned. While this exact number varies year-to-year, there are approximately 1,800 colleges/universities reflected in a single dataset.
