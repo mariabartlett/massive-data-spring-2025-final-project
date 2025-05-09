@@ -26,8 +26,10 @@ In the United States, gender disparities between men and women are a pervasive a
 
 Over the last fifty years, Congress and the Department of Education have continued to update the guidance and protocols for Title IX to better monitor its compliance. In 1979, the Department of Education established that institutions’ intercollegiate athletics program must meet one of three criteria to be considered in compliance: 
 
-1) The number of male and female athletes is substantially proportionate to their respective enrollments. 
+1) The number of male and female athletes is substantially proportionate to their respective enrollments.
+
 2) The institution has a history and continuing practice of expanding participation opportunities responsive to the developing interests and abilities of the underrepresented 
+
 3) The institution is fully and effectively accommodating the interests and abilities of the underrepresented sex. (Office of Civil Rights, n.d.) 
 
 Several years later, Congress enacted the Equity in Athletics Disclosure Act (EADA) in 1994 to make it easier to track Title IX compliance in higher education institutions. The EADA requires colleges and universities that (1) receive federal financial assistance (Title IV Federal Student Aid) and that (2) sponsor intercollegiate athletics to report data annually on male and female athletics participation, staffing issues for the male and female athletic teams, and the revenues and expenses for the male and female athletic teams to the Department of Education (NCAA, n.d.). The data is then made publicly available through the Department of Education’s website (NCAA, n.d.). 

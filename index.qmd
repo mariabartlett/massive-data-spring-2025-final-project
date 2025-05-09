@@ -22,6 +22,8 @@ include-in-header:
 
 # Project background 
 
+This site illustrates how applying big data techniques on the U.S. Department of Education's Equity in Athletics Disclosure Act (EADA) data can help the federal government and universities better monitor and address issues with gender equity in collegiate athletics.
+
 # Site overview
 
 - In **`Policy context`**, we give a brief history of U.S. legislation focused on improving gender equity in collegiate sports. 

@@ -13,17 +13,13 @@ website:
   page-navigation: true
   site-url: "https://mariabartlett.github.io/massive-data-spring-2025-final-project/" 
   repo-url: https://github.com/mariabartlett/massive-data-spring-2025-final-project
+  repo-actions: [source]
 
   page-footer:
     right: "Data Science for Public Policy @ Georgetown University"
     left: "Bridgette Sullivan, Jasmine Jia, Katharyn Loweth, & Maria Bartlett"
-    
-  sidebar:
-    tools: 
-      - icon: github
-        href: https://github.com/mariabartlett/massive-data-spring-2025-final-project
-        text: "View GitHub repository"        
-
+  
+  sidebar:      
     style: "docked"
     search: true
     collapse-level: 1
