@@ -36,36 +36,41 @@ This section takes a closer look at disparities and trends in gender representat
 gender_data = read.csv('03_Output/01_Analysis/all_sports_data.csv')
 
 library(ggplot2)
+library(dplyr)
 
-ggplot(gender_data, aes(x = gender, y = exp, fill = gender)) +
+gender_data_logged <- gender_data %>%
+  filter(if_all(where(is.numeric), ~ . != 0)) %>%
+  mutate(across(where(is.numeric), ~ log(.)))
+
+ggplot(gender_data_logged, aes(x = gender, y = exp, fill = gender)) +
   geom_boxplot() +
-  labs(title = "Boxplot by Gender for Expenses", x = "Gender", y = "Expenses") +
+  labs(title = "Boxplot by Gender for Expenses (Logged)", x = "Gender", y = "Expenses") +
   scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
   theme_minimal()
 
-ggplot(gender_data, aes(x = gender, y = opexpperpart, fill = gender)) +
+ggplot(gender_data_logged, aes(x = gender, y = opexpperpart, fill = gender)) +
   geom_boxplot() +
-  labs(title = "Boxplot by Gender for Operating Expenses per Partcipant", x = "Gender", y = "Operating Expenses per Participant") +
+  labs(title = "Boxplot by Gender for Operating Expenses per Partcipant (Logged)", x = "Gender", y = "Operating Expenses per Participant") +
   scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
   theme_minimal()
 
 
-ggplot(gender_data, aes(x = gender, y = opexpperteam, fill = gender)) +
+ggplot(gender_data_logged, aes(x = gender, y = opexpperteam, fill = gender)) +
   geom_boxplot() +
-  labs(title = "Boxplot by Gender for Operating Expenses per Team", x = "Gender", y = "Operating Expenses per Team") +
+  labs(title = "Boxplot by Gender for Operating Expenses per Team (Logged)", x = "Gender", y = "Operating Expenses per Team") +
   scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
   theme_minimal()
 
 
-ggplot(gender_data, aes(x = gender, y = partic, fill = gender)) +
+ggplot(gender_data_logged, aes(x = gender, y = partic, fill = gender)) +
   geom_boxplot() +
-  labs(title = "Boxplot by Gender for Participation", x = "Gender", y = "Participation") +
+  labs(title = "Boxplot by Gender for Participation (Logged)", x = "Gender", y = "Participation") +
   scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
   theme_minimal()
 
-ggplot(gender_data, aes(x = gender, y = rev, fill = gender)) +
+ggplot(gender_data_logged, aes(x = gender, y = rev, fill = gender)) +
   geom_boxplot() +
-  labs(title = "Boxplot by Gender for Revenue", x = "Gender", y = "Revenue") +
+  labs(title = "Boxplot by Gender for Revenue (Logged)", x = "Gender", y = "Revenue") +
   scale_fill_manual(values = c("women" = "red", "men" = "blue")) +
   theme_minimal()
 
@@ -79,13 +84,13 @@ Using Principle Component Analysis (PCA) and K-means clustering, practicioners a
 
 ```{r}
 #| eval: true
-#| echo: false
+#| echo: true
 #| warning: false
 #| message: false
 
 #install.packages("plotly")
 library(plotly)
-library(dplyr)
+
 
 # Read data from cleaned python file
 inst_level_numerical_no_coed_no_na_no_name = read.csv('03_Output/01_Analysis/inst_level_pca_data.csv')
@@ -93,8 +98,10 @@ inst_level_numerical_no_coed_no_na_no_name = read.csv('03_Output/01_Analysis/ins
 # Create a custom hover text
 inst_level_numerical_no_coed_no_na_no_name$hover_text <- paste0(
   "University: ", inst_level_numerical_no_coed_no_na_no_name$university, "<br>",
-  "PC1: ", round(inst_level_numerical_no_coed_no_na_no_name$PC1, 2), "<br>",
-  "PC2: ", round(inst_level_numerical_no_coed_no_na_no_name$PC2, 2)
+  "Female Participants: ", inst_level_numerical_no_coed_no_na_no_name$EFFemaleCount, "<br>",
+  "Male Participants: ", inst_level_numerical_no_coed_no_na_no_name$EFMaleCount, "<br>",
+  "Ratio Women's Student Aid: ", inst_level_numerical_no_coed_no_na_no_name$STUAID_WOMEN_RATIO, "<br>",
+  "Men's Head Coach Salary: ", "$", formatC(inst_level_numerical_no_coed_no_na_no_name$HDCOACH_SALARY_MEN, format = "f", big.mark = ",", digits = 0)
 )
 
 
@@ -184,11 +191,14 @@ df <- df %>%
     TRUE ~ "gray"
   ))
 
-# Create hover text
+
+# Create a custom hover text
 df$hover_text <- paste0(
   "University: ", df$university, "<br>",
-  "PC1: ", round(df$PC1, 2), "<br>",
-  "PC2: ", round(df$PC2, 2)
+  "Female Participants: ", df$EFFemaleCount, "<br>",
+  "Male Participants: ", df$EFMaleCount, "<br>",
+  "Ratio Women's Student Aid: ", df$STUAID_WOMEN_RATIO, "<br>",
+  "Men's Head Coach Salary: ", "$", formatC(df$HDCOACH_SALARY_MEN, format = "f", big.mark = ",", digits = 0)
 )
 
 # Plot with custom colors
@@ -280,11 +290,13 @@ df <- df %>%
     TRUE ~ "gray"
   ))
 
-# Create hover text
+# Create a custom hover text
 df$hover_text <- paste0(
   "University: ", df$university, "<br>",
-  "PC1: ", round(df$PC1, 2), "<br>",
-  "PC2: ", round(df$PC2, 2)
+  "Female Participants: ", df$EFFemaleCount, "<br>",
+  "Male Participants: ", df$EFMaleCount, "<br>",
+  "Ratio Women's Student Aid: ", df$STUAID_WOMEN_RATIO, "<br>",
+  "Men's Head Coach Salary: ", "$", formatC(df$HDCOACH_SALARY_MEN, format = "f", big.mark = ",", digits = 0)
 )
 
 # Plot with custom colors
@@ -325,8 +337,10 @@ basketball_data = read.csv('03_Output/01_Analysis/basketball_sport_data.csv')
 # Create a custom hover text
 basketball_data$hover_text <- paste0(
   "University: ", basketball_data$university, "<br>",
-  "PC1: ", round(basketball_data$PC1, 2), "<br>",
-  "PC2: ", round(basketball_data$PC2, 2)
+  "Participants: ", basketball_data$partic, "<br>",
+  "Classification: ", basketball_data$classificationcode, "<br>",
+  "Revenue: ","$", formatC(basketball_data$rev, format = "f", big.mark = ",", digits = 0), "<br>",
+  "Expenses: ", "$", formatC(basketball_data$exp, format = "f", big.mark = ",", digits = 0)
 )
 
 
@@ -365,8 +379,10 @@ xc_tf_data = read.csv('03_Output/01_Analysis/xctf_sport_data.csv')
 # Create a custom hover text
 xc_tf_data$hover_text <- paste0(
   "University: ", xc_tf_data$university, "<br>",
-  "PC1: ", round(xc_tf_data$PC1, 2), "<br>",
-  "PC2: ", round(xc_tf_data$PC2, 2)
+  "Participants: ", xc_tf_data$partic, "<br>",
+  "Classification: ", xc_tf_data$classificationcode, "<br>",
+  "Revenue: ","$", formatC(xc_tf_data$rev, format = "f", big.mark = ",", digits = 0), "<br>",
+  "Expenses: ", "$", formatC(xc_tf_data$exp, format = "f", big.mark = ",", digits = 0)
 )
 
 
