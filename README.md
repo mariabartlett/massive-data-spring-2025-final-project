@@ -39,6 +39,8 @@
 
 </table>
 
+With the exception of `.gitignore` and `.readme`, all other scripts in the repository are used to produce and host our website.
+
 ## Website
 
 Our project website is available at: https://mariabartlett.github.io/massive-data-spring-2025-final-project/
