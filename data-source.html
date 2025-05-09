@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-source.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./data-pipeline.html" rel="next">
+<link href="./policy-context.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,7 +94,7 @@ background-size: cover;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./policy-context.html">Policy context</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-source.html">RQs &amp; data source</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -142,13 +142,13 @@ background-size: cover;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./policy-context.html" class="sidebar-item-text sidebar-link active">
+  <a href="./policy-context.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Policy context</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-source.html" class="sidebar-item-text sidebar-link">
+  <a href="./data-source.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">RQs &amp; data source</span></a>
   </div>
 </li>
@@ -176,7 +176,13 @@ background-size: cover;
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link active" data-scroll-target="#research-questions">Research Questions:</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -184,11 +190,12 @@ background-size: cover;
 
 
 
-<p>In the United States, gender disparities between men and women are a pervasive and complex issue. Protecting individuals’ rights to opportunity is a key aspect of America’s national identity. During the civil rights movement of the 1960s and 1970s, Congress enacted legislation that made sex-based discrimination illegal in certain environments. Specifically in 1972, Congress passed Title IX, which prohibits sex-based discrimination in educational institutions that receive federal funding (NWLC, 2022a). This not only includes any admission or classroom activities but also mandates that schools allocate athletic participation opportunities in a nondiscriminatory way (NWLC, 2022b).</p>
-<p><br><br>Over the last fifty years, Congress and the Department of Education have continued to update the guidance and protocols for Title IX to better monitor its compliance. In 1979, the Department of Education established that institutions’ intercollegiate athletics program must meet one of three criteria to be considered in compliance: <br><br>1.) The number of male and female athletes is substantially proportionate to their respective enrollments. <br><br>2.) The institution has a history and continuing practice of expanding participation opportunities responsive to the developing interests and abilities of the underrepresented sex</p>
-<p><br><br>3.) The institution is fully and effectively accommodating the interests and abilities of the underrepresented sex. (Office of Civil Rights, n.d.) <br><br>Several years later, Congress enacted the Equity in Athletics Disclosure Act (EADA) in 1994 to make it easier to track Title IX compliance in higher education institutions. The EADA requires colleges and universities that (1) receive federal financial assistance (Title IV Federal Student Aid) and that (2) sponsor intercollegiate athletics to report data annually on male and female athletics participation, staffing issues for the male and female athletic teams, and the revenues and expenses for the male and female athletic teams to the Department of Education (NCAA, n.d.). The data is then made publicly available through the Department of Education’s website (NCAA, n.d.).</p>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions:</h2>
+<p><br><br> For our final project, we chose to explore the nuances of gender gap in intercollegiate athletics using the EADA datasets. Specifically, our research is guided by the following questions: <br><br>1.) Have the disparities between men’s and women’s sports increased, decreased, or remained stable over the 21-year period? Do these disparities vary by sport? <br><br>2.)What distinct clusters of institutions emerge considering EADA variables for a single academic year? <br><br> ## Data Source: <br><br> We downloaded the EADA dataset directly from the Department of Education website. Our EADA dataset consists of csv files, one for each academic year from years 2002-2023. Each dataset includes data on coach salaries, roster information, and recruitment expenses for all applicable male and female college athletic programs. There are approximately 4,000 variables captured within a single academic year. Each observation in the dataset represents a unique higher education institution that met the two criteria previously mentioned. While this exact number varies year-to-year, there are approximately 1,800 colleges/universities reflected in a single dataset.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -426,13 +433,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project background &amp; site overview</span>
+      <a href="./policy-context.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Policy context</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-source.html" class="pagination-link">
-        <span class="nav-page-text">RQs &amp; data source</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-pipeline.html" class="pagination-link">
+        <span class="nav-page-text">Data pipeline</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
