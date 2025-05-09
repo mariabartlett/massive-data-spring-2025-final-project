@@ -26,7 +26,7 @@ include-in-header:
 
 For our final project, we chose to explore the nuances of gender gap in intercollegiate athletics using the EADA datasets. Specifically, our research is guided by the following questions:
 
-1) Have the disparities between men's and women's sports increased, decreased, or remained stable over the 21-year period? Do these disparities vary by sport?
+1) How do the disparities between men's and women's sports vary by institution and sport?
 
 2) What distinct clusters of institutions emerge considering EADA variables for a single academic year?
 
