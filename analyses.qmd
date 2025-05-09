@@ -80,7 +80,7 @@ ggplot(gender_data_logged, aes(x = gender, y = rev, fill = gender)) +
 
 #### Institution Level
 
-Using Principle Component Analysis (PCA) and K-means clustering, practicioners are able to better understand universities that are similar to each other in their sports equity. Below, there are five clusters, which seem to emerge based on school sizes. On the far right side of the graph is the large universities with higher amounts of spending and larger teams. These universities do skew the graph a bit since they are spending so much more on their sports teams in comparison to the many small schools that are primarily on the left side of the graph.<br><br>
+Using Principle Component Analysis (PCA) and K-means clustering, practitioners are able to better understand universities that are similar to each other in their sports equity. Below, there are five clusters, which seem to emerge based on school sizes. On the far right side of the graph is the large universities with higher amounts of spending and larger teams. These universities do skew the graph a bit since they are spending so much more on their sports teams in comparison to the many small schools that are primarily on the left side of the graph. The code to create this graph is below, but a full python script for these analyses can be found [here](https://github.com/mariabartlett/massive-data-spring-2025-final-project/blob/main/02_Scripts/01_Analysis/Initial_Inst_Analysis.ipynb). <br><br>
 
 ```{r}
 #| eval: true
