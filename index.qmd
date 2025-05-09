@@ -20,4 +20,16 @@ include-in-header:
       </style>
 ---
 
-# Project background & site overview
+# Project background 
+
+# Site overview
+
+- In **`Policy context`**, we give a brief history of U.S. legislation focused on improving gender equity in collegiate sports. 
+
+- In **`Research questions & data source`**, we outline our two main research questions and present the Equity in Athletics Disclosure Act (EADA) data used in our analyses. 
+
+- In **`Data pipeline`**, we detail how we created a cloud-based pipeline using AWS to run our analyses.
+
+- In **`Analytics`**, we present the results of the exploratory analyses and unsupervised analyses (PCA, K-means clustering) that we deployed in our AWS pipeline. We employ both static and interactive visualizations.
+
+- Finally, in **`Institution reports`**, we provide a prototype for creating standardized gender equity snapshot PDFS for individual collegiate institutions. This is a task well-suited for future incorporation into our cloud pipeline.
