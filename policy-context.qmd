@@ -20,11 +20,12 @@ include-in-header:
       </style>
 ---
 
+# Policy context
+
 In the United States, gender disparities between men and women are a pervasive and complex issue. Protecting individuals’ rights to opportunity is a key aspect of America’s national identity. During the civil rights movement of the 1960s and 1970s, Congress enacted legislation that made sex-based discrimination illegal in certain environments. Specifically in 1972, Congress passed Title IX, which prohibits sex-based discrimination in educational institutions that receive federal funding (NWLC, 2022a). This not only includes any admission or classroom activities but also mandates that schools allocate athletic participation opportunities in a nondiscriminatory way (NWLC, 2022b). 
 
 <br><br>Over the last fifty years, Congress and the Department of Education have continued to update the guidance and protocols for Title IX to better monitor its compliance. In 1979, the Department of Education established that institutions’ intercollegiate athletics program must meet one of three criteria to be considered in compliance: 
 <br><br>1.) The number of male and female athletes is substantially proportionate to their respective enrollments. 
 <br><br>2.) The institution has a history and continuing practice of expanding participation opportunities responsive to the developing interests and abilities of the underrepresented sex
-
 <br><br>3.) The institution is fully and effectively accommodating the interests and abilities of the underrepresented sex. (Office of Civil Rights, n.d.) 
 <br><br>Several years later, Congress enacted the Equity in Athletics Disclosure Act (EADA) in 1994 to make it easier to track Title IX compliance in higher education institutions. The EADA requires colleges and universities that (1) receive federal financial assistance (Title IV Federal Student Aid) and that (2) sponsor intercollegiate athletics to report data annually on male and female athletics participation, staffing issues for the male and female athletic teams, and the revenues and expenses for the male and female athletic teams to the Department of Education (NCAA, n.d.). The data is then made publicly available through the Department of Education’s website (NCAA, n.d.). 

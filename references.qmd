@@ -1,0 +1,37 @@
+---
+title: "Designing a data pipeline to analyze gender equity in college sports"
+subtitle: "Spring 2025 Massive Data Fundamentals final project"
+title-block-banner: track-image.jpg
+include-in-header:
+  - text: |
+      <style>
+      .quarto-title-block .quarto-title-banner {
+        background-position-y: right;
+        height: 200px;
+        text-align: left;
+      }
+      .title {
+        color: black;
+        font-weight: bold
+      }
+      .subtitle {
+        color: black
+      }
+      </style>
+---
+
+# References
+
+Fry, R., Kennedy, B., & Funk, C. (2021, April 1). _STEM Jobs See Uneven Progress in Increasing Gender, Racial and Ethnic Diversity._ Pew Research Center.  https://www.pewresearch.org/social-trends/2021/04/01/stem-jobs-see-uneven-progress-in-increasing-gender-racial-and-ethnic-diversity/
+
+Hurst, K. (2024, November 18). _U.S. women are outpacing men in college completion, including in every major racial and ethnic group._ Pew Research Center. https://www.pewresearch.org/short-reads/2024/11/18/us-women-are-outpacing-men-in-college-completion-including-in-every-major-racial-and-ethnic-group/#:~:text=Today%2C%2047%25%20of%20U.S.%20women,from%2025%25%20to%2037%25).
+
+National Collegiate Athletic Association (NCAA). (n.d.) _Gender Equity / Title IX Important Facts._ https://www.ncaa.org/sports/2013/11/21/gender-equity-title-ix-important-facts.aspx
+
+National Women’s Law Center (NWLC). (2022a, June 21). _The Battle for Gender Equity in Athletics in Colleges and Universities._ https://nwlc.org/resource/the-battle-for-gender-equity-in-athletics-in-colleges-and-universities/
+
+National Women’s Law Center (NWLC). (2022b, June 21). _Quick Facts About Title IX and Athletics._ https://nwlc.org/resource/quick-facts-about-title-ix-and-athletics/?gad_source=1&gad_campaignid=22045111430&gbraid=0AAAAAD7mv1OdN910V0dXe62HsSVL3fxMk&gclid=Cj0KCQjwrPHABhCIARIsAFW2XBPUPtzk_DYP1TarvZ1b1-qHSX1Dv1sDFtl1pnQQahY1sMJ7CwZXlrQaAkHiEALw_wcB
+
+Office of Civil Rights. (n.d.). _Intercollegiate Athletics Policy: Three-Part Test -- Part Three Q's & A's._ U.S. Department of Education. https://www.ed.gov/laws-and-policy/civil-rights-laws/sex-discrimination/intercollegiate-athletics-policy-three-part-test--part-three-qs-as
+
+Office of Postsecondary Education. (n.d.). _Equity in Athletics Data Analysis._ U.S. Department of Education. https://ope.ed.gov/athletics/#/datafile/list 

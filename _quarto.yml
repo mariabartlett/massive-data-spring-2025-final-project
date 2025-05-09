@@ -7,6 +7,7 @@ project:
     - data-pipeline.qmd
     - analyses.qmd
     - institution-reports.qmd
+    - references.qmd
   
 website: 
   page-navigation: true
@@ -39,6 +40,8 @@ website:
         text: Analytics
       - href: institution-reports.qmd
         text: Institution reports
+      - href: references.qmd
+        text: References
 
 format:
   html:
