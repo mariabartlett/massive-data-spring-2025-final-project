@@ -1,5 +1,7 @@
 # Designing a data pipeline to analyze gender equity in college sports
 
+This project illustrates how applying big data techniques on the U.S. Department of Education’s Equity in Athletics Disclosure Act (EADA) data can help the federal government, universities, and advocacy groups better monitor and address issues with gender equity in collegiate athletics.
+
 ## Project Description
 
 ## Repository Structure & File Contents
