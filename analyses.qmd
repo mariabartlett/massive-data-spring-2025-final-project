@@ -20,6 +20,8 @@ include-in-header:
       </style>
 ---
 
+# Analytics
+
 ### Exploratory
 
 This section takes a closer look at disparities, and trends in gender representation across institutions and sports. By analyzing participation rates, expenses, operating expenses, and revenue, the goal is to surface both progress and persistent gaps in gender equality. These visualizations below show the many outliers that exist throughout each of these areas.<br><br>

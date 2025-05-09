@@ -20,6 +20,8 @@ include-in-header:
       </style>
 ---
 
+# Data pipeline
+
 Our analysis of gender equity in college sports required a robust data processing infrastructure to handle the EADA datasets. We implemented a cloud-based pipeline using AWS services to ensure scalability and reproducibility.
 
 The EADA data contains multiple years of information across hundreds of institutions, with dozens of metrics for each sport and gender combination. This volume and complexity of data necessitated a solution beyond local computing resources. We selected AWS as our cloud provider due to its comprehensive suite of data processing services and strong integration capabilities.

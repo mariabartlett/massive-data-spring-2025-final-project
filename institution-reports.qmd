@@ -22,16 +22,7 @@ toc-depth: 7
 code-block-background: true
 ---
 
-```{r}
-#| warning: false
-#| message: false
-#| output: false
-#| echo: false
-#| eval: true
-knitr::knit_engines$set(txt = function(options) {
-
-})
-```
+# Institution reports
 
 In this section, we present a potential future use for the EADA data that is well-suited for a cloud computing environment, has high potential value for academic institutions, and is remarkably efficient to execute.
 
@@ -45,7 +36,7 @@ In this section, we present a tutorial on how to prepare year-specific snapshot 
 
 ### 1. Data structure
 
-Below, we illustrate the structure of the EADA data for four institutions from the 2022-23 EADA file. 
+Below, we illustrate the structure of the EADA data for five institutions from the 2022-23 EADA file (with the first 30 variables). 
 
 ```{r}
 #| warning: false
@@ -99,9 +90,11 @@ Next, we identify key statistics we want each report to contain. We will present
 
 - A figure with average full−time coaching salary, by team gender and coach type (head vs. assistant)
 
+In the following sections, we will discuss key code chunks from our `reports_template.qmd` file. This is the script that provides the template for our PDF reports. The full script is available on our GitHub repository [here](https://github.com/mariabartlett/massive-data-spring-2025-final-project/blob/main/02_Scripts/02_InstitutionReports/report_template.qmd).
+
 #### a. YAML header
 
-We will create a Quarto `.qmd` file that will be the template for the report. Importantly, the document's YAML header should include the parameters that vary during report production. In this case, these are:
+Importantly, the document's YAML header should include the parameters that vary during report production. In this case, these are:
 
 - Institution name
 
@@ -109,7 +102,7 @@ We will create a Quarto `.qmd` file that will be the template for the report. Im
 
 We initialize our default parameter values as **Georgetown University** for **2022-23**.
 
-```{txt}
+```{verbatim}
 #| echo: fenced
 #| eval: false
 
@@ -122,7 +115,7 @@ fontsize: 12pt
 embed-resources: TRUE
 page-layout: full
 params:
-  inst: University of North Carolina at Chapel Hill
+  inst: Georgetown University
   year: 2023
 geometry:
       - top=2cm
@@ -131,6 +124,8 @@ geometry:
 ```
 
 #### b. Using parameters
+
+Next, we use our parameter values to import the proper year of data and subset the data to our institution of interest.
 
 ```{r}
 #| eval: false
@@ -173,7 +168,9 @@ sy <- paste0(params$year - 1,"-",params$year)
 
 #### c. Displaying basic institution information
 
-```{txt}
+We then employ simple in-line code with markdown formatting to display basic institutional information at the top of the report. We can capitalize on available variables such as NCAA classification (`classification_name`) to easily display relevant information about the institution.
+
+```{verbatim}
 #| eval: false
 #| echo: fenced
 
@@ -194,6 +191,8 @@ sy <- paste0(params$year - 1,"-",params$year)
 ![](_images/report1.png)
 
 #### d. Tables
+
+Next, we create our two tables using `tidyverse` and `kableExtra`. This is simple data cleaning and table preparation code that is not specific to the parameterized report framework. Thus, the code is available below but hidden by default.
 
 ```{r}
 #| echo: fenced
@@ -254,11 +253,18 @@ sports_by_gender %>%
 
 ```
 
+**Table 1**
+
 ![](_images/report2.png)
+
+**Table 2**
 
 ![](_images/report3.png)
 
 #### e. Figure
+
+We create our figure using `ggplot2`. Again, this is simple data reshaping and figure preparation code that is not specific to the parameterized report framework. Thus, the code is available below but hidden by default.
+
 
 ```{r}
 #| echo: fenced
@@ -303,9 +309,9 @@ ggplot(data = coach_sal, aes(x = type, y = expense, fill = gender)) +
 
 #### f. Footnotes
 
-Lastly, we'll add the citation to identify where we got the data:
+Last, we'll use our year-specific parameter and inline code to add the citation to identify where we obtained the data for these reports.
 
-```{txt}
+```{verbatim}
 #| eval: false
 #| echo: fenced
 
@@ -317,7 +323,11 @@ Lastly, we'll add the citation to identify where we got the data:
 
 ### 3. Running the reports
 
-script source: https://rfortherestofus.com/2024/06/parameterized-reporting-quarto
+In the following section, we present the `run_reports.R` file to execute our reports. This script is also available on our GitHub repository [here](https://github.com/mariabartlett/massive-data-spring-2025-final-project/blob/main/02_Scripts/02_InstitutionReports/run_reports.R).
+
+In the `inst` vector, we specify the institutions for which we want to run reports. In the `year` vector, we identify the year of data to use to prepare the reports. The remaining code tells R to iterate over these vectors and for each institution-year combination call our `report_template.qmd`, substitute the template parameters with the respective values, and export a PDF.
+
+**Thanks!:** We obtained the basis for the code below from [R for the Rest of Us](https://rfortherestofus.com/2024/06/parameterized-reporting-quarto).
 
 ```{r}
 #| eval: false
@@ -326,7 +336,8 @@ script source: https://rfortherestofus.com/2024/06/parameterized-reporting-quart
 library(quarto)
 library(tidyverse)
 
-inst <- c("Duke University",
+inst <- c("Georgetown University",
+          "Duke University",
           "Furman University",
           "University of Michigan-Ann Arbor",
           "University of North Carolina at Chapel Hill")
@@ -344,6 +355,8 @@ pwalk(reports, quarto_render)
 ```
 
 ### 4. Reports
+
+We now have standardized reports for our 5 institutions!
 
 #### Georgetown University
 
@@ -366,3 +379,15 @@ pwalk(reports, quarto_render)
 {{< pdf "03_Output/02_InstitutionReports/umich-2023.pdf" width=600 height=400 >}}
 
 ## Scaling up
+
+In a cloud environment with distributed computing, we could imagine many use cases for this reporting pipeline. For example, we could efficiently: 
+
+- Produce these standardized reports for all institutions for all available years
+
+- Create a much more comprehensive report template by including a far greater number of tables and figures
+
+- Capitalize on two or more years of data for the same institution to create cross-time reports
+
+- Utilize the results of the PCA analysis to identify similar institutions and create a unified PDF report with the snapshot for each institution
+
+The opportunities are endless!

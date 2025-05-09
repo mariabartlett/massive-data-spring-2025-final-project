@@ -20,4 +20,4 @@ include-in-header:
       </style>
 ---
 
-## Project background & site overview
+# Project background & site overview

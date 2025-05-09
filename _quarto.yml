@@ -3,6 +3,7 @@ project:
   render:
     - index.qmd
     - policy-context.qmd
+    - data-source.qmd
     - data-pipeline.qmd
     - analyses.qmd
     - institution-reports.qmd
@@ -31,7 +32,7 @@ website:
       - href: policy-context.qmd
         text: Policy context
       - href: data-source.qmd
-        text: RQs & Data source
+        text: RQs & data source
       - href: data-pipeline.qmd
         text: Data pipeline
       - href: analyses.qmd
