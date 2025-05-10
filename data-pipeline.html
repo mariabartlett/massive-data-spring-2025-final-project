@@ -207,6 +207,7 @@ background-size: cover;
 <section id="step-1-raw-data-upload-to-s3" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</h3>
 <p>We begin by storing our raw EADA CSV files in Amazon S3. These datasets contain critical gender equity indicators including team roster sizes, coaching staff compensation, recruitment expenses, and scholarship allocations.</p>
+<p>We processed the EADA datasets locally and uploaded <code>Schools.csv</code> and <code>InstLevel.csv</code> to an S3 bucket. We selected Amazon S3 as our data storage due to its security features and integration with AWS analytical tools. This approach allows us to centralize multi-year EADA datasets.</p>
 <p>Our <code>Schools.csv</code> file contains sport-specific data across institutions, including participation numbers and expenses separated by gender. The <code>instLevel.csv</code> file provides institution-wide metrics such as total athletics revenue and gender proportionality measurements. Both files contain financial information that benefits from S3’s security features while remaining accessible for our gender equity analysis. Although this financial data is publicly-available, users can easily imagine other uses where this data security would be essential.</p>
 <p><img src="04_FinalReport/_images/s3.png" class="img-fluid"></p>
 </section>
