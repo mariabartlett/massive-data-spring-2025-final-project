@@ -30,9 +30,7 @@ The EADA data contains multiple years of information across over 1,800 instituti
 
 ### STEP 1: Raw Data Upload to S3
 
-We begin by storing our raw EADA CSV files in Amazon S3. These datasets contain critical gender equity indicators including team roster sizes, coaching staff compensation, recruitment expenses, and scholarship allocations.
-
-The `Schools.csv` file contains variables such as participation numbers, expenses, and recruitment budgets across various sports programs. The `InstLevel.csv` file includes institution-wide aggregates such as salary information of head and assistant coaches and athletes’ financial aid information. 
+Our `Schools.csv` file contains variables such as participation numbers, expenses, and recruitment budgets across various sports programs. The `InstLevel.csv` file includes institution-wide aggregates such as salary information of head and assistant coaches and athletes’ financial aid information. 
 
 We first processed the EADA datasets locally and uploaded `Schools.csv` and `InstLevel.csv` to an S3 bucket. We selected Amazon S3 as our data storage due to its security features and integration with AWS analytical tools. This approach allows us to centralize high-dimensional EADA datasets across multiple users. This architecture enables secure, versioned storage while maintaining accessibility for concurrent analysis by multiple team members. 
 
