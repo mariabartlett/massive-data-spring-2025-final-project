@@ -22,16 +22,16 @@ include-in-header:
 
 # Project background 
 
-This site illustrates how applying big data techniques on the U.S. Department of Education's Equity in Athletics Disclosure Act (EADA) data can help the federal government and universities better monitor and address issues with gender equity in collegiate athletics.
+This site illustrates how applying big data techniques on the U.S. Department of Education's Equity in Athletics Disclosure Act (EADA) data can help the federal government, universities, and advocacy groups better monitor and address issues with gender equity in collegiate athletics.
 
 # Site overview
 
 - In **`Policy context`**, we give a brief history of U.S. legislation focused on improving gender equity in collegiate sports. 
 
-- In **`Research questions & data source`**, we outline our two main research questions and present the Equity in Athletics Disclosure Act (EADA) data used in our analyses. 
+- In **`RQs & data source`**, we outline our two main research questions and present the Equity in Athletics Disclosure Act (EADA) data used in our analyses. 
 
 - In **`Data pipeline`**, we detail how we created a cloud-based pipeline using AWS to run our analyses.
 
-- In **`Analytics`**, we present the results of the exploratory analyses and unsupervised analyses (PCA, K-means clustering) that we deployed in our AWS pipeline. We employ both static and interactive visualizations.
+- In **`Analytics`**, we present the results of the exploratory analyses and unsupervised analyses (K-means clustering, PCA) that we deployed in our AWS pipeline. We employ both static and interactive visualizations to present results.
 
-- Finally, in **`Institution reports`**, we provide a prototype for creating standardized gender equity snapshot PDFS for individual collegiate institutions. This is a task well-suited for future incorporation into our cloud pipeline.
+- Finally, in **`Institution reports`**, we provide a prototype for creating standardized gender equity snapshot PDFs for individual collegiate institutions. This is a task well-suited for future incorporation into our cloud pipeline.

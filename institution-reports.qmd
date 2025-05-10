@@ -388,6 +388,6 @@ In a cloud environment with distributed computing, we could imagine many use cas
 
 - Capitalize on two or more years of data for the same institution to create cross-time reports
 
-- Utilize the results of the PCA analysis to identify similar institutions and create a unified PDF report with the snapshot for each institution
+- Utilize the results of the K-means clustering analysis to identify similar institutions and create a unified PDF report with the snapshot for each institution
 
 The opportunities are endless!
