@@ -327,7 +327,7 @@ In the following section, we present the `run_reports.R` file to execute our rep
 
 In the `inst` vector, we specify the institutions for which we want to run reports. In the `year` vector, we identify the year of data to use to prepare the reports. The remaining code tells R to iterate over these vectors and for each institution-year combination call our `report_template.qmd`, substitute the template parameters with the respective values, and export a PDF.
 
-Note: We obtained the basis for the code below from [R for the Rest of Us](https://rfortherestofus.com/2024/06/parameterized-reporting-quarto).
+Note: We obtained the basis for the code below from [R for the Rest of Us](https://rfortherestofus.com/2024/06/parameterized-reporting-quarto) (Keyes, 2024).
 
 ```{r}
 #| eval: false
