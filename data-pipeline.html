@@ -187,8 +187,8 @@ background-size: cover;
   <ul class="collapse">
   <li><a href="#step-1-raw-data-upload-to-s3" id="toc-step-1-raw-data-upload-to-s3" class="nav-link" data-scroll-target="#step-1-raw-data-upload-to-s3">STEP 1: Raw Data Upload to S3</a></li>
   <li><a href="#step-2-cluster-setup-with-emr" id="toc-step-2-cluster-setup-with-emr" class="nav-link" data-scroll-target="#step-2-cluster-setup-with-emr">STEP 2: Cluster Setup with EMR</a></li>
-  <li><a href="#step-03-launch-jupyter-on-emr-using-ssh" id="toc-step-03-launch-jupyter-on-emr-using-ssh" class="nav-link" data-scroll-target="#step-03-launch-jupyter-on-emr-using-ssh">STEP 03: Launch Jupyter on EMR using SSH</a></li>
-  <li><a href="#step-04-load-analyze-data" id="toc-step-04-load-analyze-data" class="nav-link" data-scroll-target="#step-04-load-analyze-data">STEP 04: Load &amp; Analyze Data</a></li>
+  <li><a href="#step-3-launch-jupyter-on-emr-using-ssh" id="toc-step-3-launch-jupyter-on-emr-using-ssh" class="nav-link" data-scroll-target="#step-3-launch-jupyter-on-emr-using-ssh">STEP 3: Launch Jupyter on EMR using SSH</a></li>
+  <li><a href="#step-4-load-analyze-data" id="toc-step-4-load-analyze-data" class="nav-link" data-scroll-target="#step-4-load-analyze-data">STEP 4: Load &amp; Analyze Data</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/mariabartlett/massive-data-spring-2025-final-project/blob/main/data-pipeline.qmd" class="toc-action">View source</a></p></div></div></nav>
@@ -216,12 +216,12 @@ background-size: cover;
 <p>Our EMR environment included Spark for distributed processing of the equity metrics and Jupyter for interactive analysis. While a single-node cluster proved sufficient for our initial investigation into gender gaps in basketball and track programs, EMR’s scalability would accommodate future analyses of all NCAA sports across multiple divisions and years, in turn expanding our understanding of gender equity trends.</p>
 <p><img src="04_FinalReport/_images/emr_cluster.png" class="img-fluid"></p>
 </section>
-<section id="step-03-launch-jupyter-on-emr-using-ssh" class="level3">
-<h3 class="anchored" data-anchor-id="step-03-launch-jupyter-on-emr-using-ssh">STEP 03: Launch Jupyter on EMR using SSH</h3>
+<section id="step-3-launch-jupyter-on-emr-using-ssh" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-launch-jupyter-on-emr-using-ssh">STEP 3: Launch Jupyter on EMR using SSH</h3>
 <p>Once the EMR cluster is active, we SSH into the EC2 Master node and manually start a Jupyter Notebook server on it. This gives us a familiar, browser-based Python environment where we can fetch data from S3, run our analysis, and visualize the output. This step requires setting up SSH tunneling so that we can securely access the notebook from our local browser.</p>
 </section>
-<section id="step-04-load-analyze-data" class="level3">
-<h3 class="anchored" data-anchor-id="step-04-load-analyze-data">STEP 04: Load &amp; Analyze Data</h3>
+<section id="step-4-load-analyze-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-load-analyze-data">STEP 4: Load &amp; Analyze Data</h3>
 <p>In the notebook, we use boto3 to connect to S3 and load our datasets into <code>pandas</code> for analysis. We then run exploratory data analysis, correlation checks, visualizations, and prepare our results for export. Our analyses are discussed in detail in the <code>Analytics</code> section.</p>
 <p><img src="04_FinalReport/_images/s3results.png" class="img-fluid"></p>
 <p>After completing our analytical transformations, the processed gender equity datasets are stored back in our S3 bucket in a structured format. By returning these processed datasets to S3, we maintain a complete data lineage from raw EADA submissions to final analytical outputs. This approach ensures reproducibility and allows team members to access the processed data through various tools, including direct connections from R for the visualization work presented in our exploratory and unsupervised learning sections. The S3 storage also facilitates version control as we refine our equity analyses over time, enabling us to track changes in gender disparities across multiple academic years of athletic department operations.</p>
