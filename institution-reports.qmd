@@ -28,7 +28,7 @@ In this section, we present a potential future use for the EADA data that is wel
 
 ## Concept
 
-The institution-level structure of the EADA files are ideal for generating **standardized, institution-specific reports** that provide a snapshot of the sports equity landscape at the institution. Because multiple years of data are available, it is also highly feasible to generate cross-year institution comparison reports, either for a particular institution or for the entire institution universe. Because each file contains 1,800+ institutions and reports are not dependent on one another, this is an **ideal task to parallelize** in a cloud environment.
+The institution-level structure of the EADA files is ideal for generating **standardized, institution-specific reports** that provide a snapshot of the sports equity landscape at the institution. Because multiple years of data are available, it is also highly feasible to generate cross-year institution comparison reports, either for a particular institution or for the entire institution universe. Because each file contains 1,800+ institutions and reports are not dependent on one another, this is an **ideal task to parallelize** in a cloud environment.
 
 ## Report production walk-through
 

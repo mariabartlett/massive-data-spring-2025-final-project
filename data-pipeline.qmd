@@ -44,12 +44,12 @@ Our EMR environment included Spark for distributed processing of the equity metr
 
 ![](04_FinalReport/_images/emr_cluster.png)
 
-### STEP 03: Launch Jupyter on EMR using SSH
+### STEP 3: Launch Jupyter on EMR using SSH
 
 Once the EMR cluster is active, we SSH into the EC2 Master node and manually start a Jupyter Notebook server on it.
 This gives us a familiar, browser-based Python environment where we can fetch data from S3, run our analysis, and visualize the output. This step requires setting up SSH tunneling so that we can securely access the notebook from our local browser.
 
-### STEP 04: Load & Analyze Data
+### STEP 4: Load & Analyze Data
 
 In the notebook, we use boto3 to connect to S3 and load our datasets into `pandas` for analysis. We then run exploratory data analysis, correlation checks, visualizations, and prepare our results for export. Our analyses are discussed in detail in the `Analytics` section.
 

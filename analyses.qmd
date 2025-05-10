@@ -323,7 +323,7 @@ fig
 
 #### Sport Level
 
-Another use case is to compare gender by sport. Again, using PCA a scatterplot can be created and filtered by sport to see the differences by gender. Below, there is a plot for Basketball, where one can see that men's teams differ drastically from women's teams.
+Another use case is to compare gender by sport. Again, using PCA a scatterplot can be created and filtered by sport to see the differences by gender. Below, there is a plot for basketball, where one can see that men's teams differ drastically from women's teams.
 
 <br><br>
 
@@ -367,7 +367,7 @@ fig
 
 ```
 
-<br><br>When looking in comparison at Cross Country/Track & Field, we see much fewer discrepancies between men's and women's teams. <br><br>
+<br><br>When looking in comparison at cross country/track & field, we see much fewer discrepancies between men's and women's teams. <br><br>
 
 ```{r}
 #| eval: true
